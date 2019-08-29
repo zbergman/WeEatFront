@@ -1,6 +1,6 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
-import './CuisineIcon.css';
+import PropTypes from 'prop-types';
+import './CuisineIcon.scss';
 
 export const CuisineIcon = (props) => {
     const CUISINES_ICON_CLASS = {
@@ -15,10 +15,10 @@ export const CuisineIcon = (props) => {
     }
 
     return (
-        <i className={`${CUISINES_ICON_CLASS[props.cuisine] ? CUISINES_ICON_CLASS[props.cuisine] : CUISINES_ICON_CLASS['default']} cuisine-icon`}></i>
+        <i className={`${CUISINES_ICON_CLASS[props.cuisine] ? CUISINES_ICON_CLASS[props.cuisine] : CUISINES_ICON_CLASS['default']}`}></i>
     )
 };
 
-// CuisineIcon.propTypes = {
-//     cuisine: PropTypes.string.isRequired
-// }
+CuisineIcon.propTypes = {
+    cuisine: PropTypes.string.isRequired
+}

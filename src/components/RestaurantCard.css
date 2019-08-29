@@ -1,9 +1,0 @@
-.restaurant-card-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center
-}
-
-.restaurant-card-container .restaurant-card-item {
-    margin: 15px;
-}

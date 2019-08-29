@@ -1,0 +1,34 @@
+@mixin flexedDiv($flexDirection) {
+    display: flex;
+    flex-direction: $flexDirection;
+    align-items: center;
+}
+
+#restaurant-card {
+    @include flexedDiv(row);
+    margin: 10px;
+    // background-color: beige;
+    width: 30%;
+    min-width: 250px;
+    padding: 0 10px;
+
+    #restaurants-details {
+        @include flexedDiv(column);
+        align-items: unset;
+        margin: 10px;
+        color: #4a494b6e;
+        font-size: 11px;
+
+        #restaurant-title {
+            color: black;
+            font-weight: bold;
+        }
+
+        #restaurant-measures {
+            @include flexedDiv(row);
+            div {
+                padding-right: 10px;
+            }            
+        }
+    }
+}
