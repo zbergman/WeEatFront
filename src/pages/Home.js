@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { RestaurantsList } from '../components/restaurant/RestaurantsList';
+import RestaurantsList from '../components/restaurant/RestaurantsList';
 import { Header } from '../components/header/Header';
 import { FiltersComponent } from '../components/filters/FiltersComponent';
+import { connect } from 'react-redux';
 import './Home.scss';
 
 const RESTAURANTS = [{
@@ -31,7 +32,7 @@ const RESTAURANTS = [{
     }
 ];
 
-export class Home extends Component {    
+class Home extends Component {    
     render() {
         return (
             <div id="home-container">
@@ -44,3 +45,7 @@ export class Home extends Component {
         );
     }
 }
+
+export default connect(
+    (state) => state
+)(Home);

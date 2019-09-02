@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './CuisineIcon.scss';
-import { CUISINE_TYPES } from '../constants/Constants';
+import { CUISINE_TYPES } from '../../constants/Constants';
 
 export const CuisineIcon = (props) => {
     const cuisines = {};

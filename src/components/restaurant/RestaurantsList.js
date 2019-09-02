@@ -3,10 +3,16 @@ import { Accordion, Icon, AccordionContent } from 'semantic-ui-react';
 import { RestaurantCard } from './RestaurantCard';
 import PropTypes from 'prop-types';
 import { ReviewsList } from '../review//ReviewsList';
+import { connect } from 'react-redux';
+import { getRestaurants } from '../../actions/index';
 import './RestaurantsList.scss';
 
-export class RestaurantsList extends Component {
+class RestaurantsList extends Component {
     state = { activeIndex: -1 };
+
+    componentDidMount() {
+        this.props.getRestaurants();
+    }
 
     handleClick = (e, titleProps) => {
         const { index } = titleProps
@@ -49,3 +55,8 @@ export class RestaurantsList extends Component {
 RestaurantCard.propTypes = {
     restaurants: PropTypes.array
 }
+
+export default connect(
+    (state) => ({ restaurants: state.restaurants }),
+    { getRestaurants }
+)(RestaurantsList);

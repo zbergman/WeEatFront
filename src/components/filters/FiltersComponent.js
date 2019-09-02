@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dropdown, Rating, Item, Radio } from 'semantic-ui-react';
-import { CUISINE_TYPES } from '../constants/Constants';
+import { CUISINE_TYPES } from '../../constants/Constants';
 import { Slider } from "react-semantic-ui-range";
 import './FiltersComponent.scss';
 
