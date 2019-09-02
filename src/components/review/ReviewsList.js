@@ -2,14 +2,15 @@ import React from 'react';
 import { Divider } from 'semantic-ui-react'
 import PropTypes from 'prop-types';
 import { ReviewCard } from './ReviewCard';
+import './ReviewsList.scss';
 
 export const ReviewsList = (props) => {
 
     return !props.reviews.length ? 
-            <div>No reviews</div> :
+            <div className="no-reviews">No reviews.</div> :
             props.reviews.map((review) => {
                     return (
-                        <div>
+                        <div key = { review.id }>
                             <Divider />
                             <ReviewCard {...review} />                    
                         </div>
@@ -19,5 +20,5 @@ export const ReviewsList = (props) => {
 };
 
 ReviewCard.propTypes = {
-    reviews: PropTypes.array.isRequired
+    reviews: PropTypes.array
 }

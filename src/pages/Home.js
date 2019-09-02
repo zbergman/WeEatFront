@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { RestaurantsList } from '../components/restaurant/RestaurantsList';
+import { Header } from '../components/header/Header';
+import { FiltersComponent } from '../components/filters/FiltersComponent';
+import './Home.scss';
 
 const RESTAURANTS = [{
         id: 1,
@@ -10,6 +13,7 @@ const RESTAURANTS = [{
         maxDeliveryTimeInMinutes: 50,
         rating: 3,
         reviews: [{
+            id: 1,
             reviewerName: "Zohar Bergman",
             text: "Nice",
             rating: 3,
@@ -30,7 +34,13 @@ const RESTAURANTS = [{
 export class Home extends Component {    
     render() {
         return (
-            <RestaurantsList restaurants = { RESTAURANTS } />
+            <div id="home-container">
+                <Header />
+                <FiltersComponent />
+                <div>
+                    <RestaurantsList restaurants = { RESTAURANTS } />
+                </div>
+            </div>
         );
     }
 }

@@ -1,0 +1,21 @@
+#header-conteiner {
+    position: relative;
+    text-align: center;
+    color: black;
+    height: 40%;
+
+    #header-image {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+    }
+
+    #header-text {
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 80px;
+        font-family: sans-serif;
+    }
+}

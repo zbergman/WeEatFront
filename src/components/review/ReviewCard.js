@@ -1,11 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Rating } from 'semantic-ui-react';
+import './ReviewCard.scss';
 
 export const ReviewCard = (props) => {
     return (
-        <div>
-            <div>{props.reviewerName}</div>
-            <div>{props.createdAt}</div>
+        <div id='review-card-container'>
+            <div>
+                <div id='review-card-title'>{props.reviewerName}</div>
+                <Rating defaultRating={Math.round(props.rating)} maxRating={5} disabled />
+            </div>
+            <div id='review-date'>{props.createdAt}</div>
             <div>{props.text}</div>
         </div>
     );

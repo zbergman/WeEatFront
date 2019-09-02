@@ -1,0 +1,23 @@
+#review-card-container {
+    margin: 20px;
+    font-size: 11px;
+
+    #review-card-title {
+        font-weight: bold;
+        padding-right: 10px;
+    }
+
+    #review-date {
+        color: #4a494b6e;
+    }
+
+    div {
+        margin: 5px 0;
+        display: flex;
+        flex-direction: row;
+
+        i.active {
+            color: #f61f06 !important;
+        }
+    }
+}

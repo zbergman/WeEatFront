@@ -1,21 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './CuisineIcon.scss';
+import { CUISINE_TYPES } from '../constants/Constants';
 
 export const CuisineIcon = (props) => {
-    const CUISINES_ICON_CLASS = {
-        italian: 'fas fa-pizza-slice',
-        asian: 'fas fa-pepper-hot',
-        vegan: 'fa fa-leaf',
-        american: 'fas fa-hamburger	',
-        sweet: 'fas fa-ice-cream',
-        breakFast: 'fas fa-egg',
-        sandwich: 'fas fa-bread-slice',
-        default: 'fas fa-utensils'
-    }
+    const cuisines = {};
+    CUISINE_TYPES.forEach(cuisine => cuisines[cuisine.key] = cuisine.iconClass );
 
     return (
-        <i className={`${CUISINES_ICON_CLASS[props.cuisine] ? CUISINES_ICON_CLASS[props.cuisine] : CUISINES_ICON_CLASS['default']}`}></i>
+        <i className={`${cuisines[props.cuisine] ? cuisines[props.cuisine] : cuisines['default']}`}></i>
     )
 };
 

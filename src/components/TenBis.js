@@ -4,6 +4,6 @@ import './TenBis.scss';
 
 export const TenBis = () => {
     return (
-        <img src={logo} alt="TenBis"/>
+        <img id="ten-bis" src={logo} alt="TenBis"/>
     );
 }

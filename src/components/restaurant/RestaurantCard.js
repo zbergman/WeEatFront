@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { CuisineIcon } from './CuisineIcon';
 import './RestaurantCard.scss';
-import { MyRating } from '../Rating';
 import { TenBis } from '../TenBis';
+import { Rating } from 'semantic-ui-react';
 
 export class RestaurantCard extends Component {
     render() {
@@ -20,7 +20,7 @@ export class RestaurantCard extends Component {
                     <div id="restaurant-measures">
                         <div>~{this.props.maxDeliveryTimeInMinutes} Minutes</div>
                         { this.props.is10Bis && <div><TenBis /></div> }
-                        <MyRating rating={this.props.rating} maxRating={5}/>
+                        <Rating defaultRating={Math.round(this.props.rating)} maxRating={5} disabled />
                     </div>
                 </div>
             </div>
