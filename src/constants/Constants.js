@@ -5,6 +5,5 @@ export const CUISINE_TYPES = [
     { key: 'american', value: 'american', text: 'American', iconClass: 'fas fa-hamburger' },
     { key: 'sweet', value: 'sweet', text: 'Sweet', iconClass: 'fas fa-ice-cream' },
     { key: 'breakFast', value: 'breakFast', text: 'Break Fast', iconClass: 'fas fa-egg' },
-    { key: 'sandwich', value: 'sandwich', text: 'Sandwiches', iconClass: 'fas fa-bread-slice' },
-    { key: 'default', value: '', text: 'Other', iconClass: 'fas fa-utensils' }
+    { key: 'sandwiches', value: 'sandwiches', text: 'Sandwiches', iconClass: 'fas fa-bread-slice' }
 ];

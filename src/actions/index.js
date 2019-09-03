@@ -1,4 +1,4 @@
-import { LOAD_RESTAURANTS, SET_CURRENT_RESTAURANT, ADD_RESTAURANT } from '../constants/ActionTypes';
+import { LOAD_RESTAURANTS, SET_CURRENT_RESTAURANT, ADD_RESTAURANT, ADD_FILTER, REMOVE_FILTER } from '../constants/ActionTypes';
 import { fetchRestaurants, createRestaurant } from '../lib/RestaurantServices';
 
 export const loadRestaurants = (payload) => {
@@ -25,4 +25,12 @@ export const saveRestaurant = (restaurant) => {
 
 export const addRestaurant = (payload) => {
     return { type: ADD_RESTAURANT, payload };
-}
+};
+
+export const addFilter = (predicateName, predicate) => {
+    return { type: ADD_FILTER, payload: { predicateName: predicateName, predicate: predicate } };
+};
+
+export const removeFilter = (predicateName) => {
+    return { type: REMOVE_FILTER, payload: predicateName };
+};

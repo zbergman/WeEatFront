@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Accordion, Icon, AccordionContent } from 'semantic-ui-react';
 import { RestaurantCard } from './RestaurantCard';
 import PropTypes from 'prop-types';
-import ReviewsList from '../review//ReviewsList';
+import ReviewsList from '../review/ReviewsList';
 import { connect } from 'react-redux';
 import { getRestaurants, setCurrentRestaurant } from '../../actions/index';
 import './RestaurantsList.scss';
@@ -22,19 +22,30 @@ class RestaurantsList extends Component {
 
         this.setState({ activeIndex: newIndex });
         this.props.setCurrentRestaurant(newCurrentRestaurant)
+    };
+
+    filterRestaurants() {
+        const { restaurants, filters } = this.props;
+        let filteredRestaurants = restaurants;
+
+        Object.values(filters).forEach(filter => {
+            filteredRestaurants = filteredRestaurants.filter(restaurant => filter(restaurant));
+        });
+
+        return filteredRestaurants;
     }
 
     render() {
         const { activeIndex } = this.state;
-
+        const filteredRestaurants = this.filterRestaurants();
         return (
             <Accordion>
                 {
-                    this.props.restaurants.map((restaurant, index) => {
+                    filteredRestaurants.map((restaurant, index) => {
                         return (
-                            <div key = { restaurant.id } >
+                            <div key={restaurant.id} >
                                 <Accordion.Title 
-                                    active = { activeIndex === index }
+                                    active={activeIndex === index }
                                     index = { index }
                                     onClick = { this.handleClick }
                                     id = "accordion-title-container"                                    
@@ -59,6 +70,6 @@ RestaurantCard.propTypes = {
 }
 
 export default connect(
-    (state) => ({ restaurants: state.restaurants }),
+    (state) => ({ restaurants: state.restaurants, filters: state.filters }),
     { getRestaurants, setCurrentRestaurant }
 )(RestaurantsList);
