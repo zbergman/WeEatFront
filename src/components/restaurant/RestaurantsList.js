@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Accordion, Icon, AccordionContent } from 'semantic-ui-react';
 import { RestaurantCard } from './RestaurantCard';
 import PropTypes from 'prop-types';
-import { ReviewsList } from '../review//ReviewsList';
+import ReviewsList from '../review//ReviewsList';
 import { connect } from 'react-redux';
-import { getRestaurants } from '../../actions/index';
+import { getRestaurants, setCurrentRestaurant } from '../../actions/index';
 import './RestaurantsList.scss';
 
 class RestaurantsList extends Component {
@@ -15,11 +15,13 @@ class RestaurantsList extends Component {
     }
 
     handleClick = (e, titleProps) => {
-        const { index } = titleProps
-        const { activeIndex } = this.state
-        const newIndex = activeIndex === index ? -1 : index
+        const { index } = titleProps;
+        const { activeIndex } = this.state;
+        const newIndex = activeIndex === index ? -1 : index;
+        const newCurrentRestaurant = newIndex < 0 ? {} : this.props.restaurants[newIndex];
 
-        this.setState({ activeIndex: newIndex })
+        this.setState({ activeIndex: newIndex });
+        this.props.setCurrentRestaurant(newCurrentRestaurant)
     }
 
     render() {
@@ -58,5 +60,5 @@ RestaurantCard.propTypes = {
 
 export default connect(
     (state) => ({ restaurants: state.restaurants }),
-    { getRestaurants }
+    { getRestaurants, setCurrentRestaurant }
 )(RestaurantsList);

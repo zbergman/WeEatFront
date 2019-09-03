@@ -2,11 +2,12 @@ import React from 'react';
 import { Divider } from 'semantic-ui-react'
 import PropTypes from 'prop-types';
 import { ReviewCard } from './ReviewCard';
+import { connect } from 'react-redux';
 import './ReviewsList.scss';
 
-export const ReviewsList = (props) => {
+const ReviewsList = (props) => {
 
-    return !props.reviews.length ? 
+    return !props.reviews || !props.reviews.length ?
             <div className="no-reviews">No reviews.</div> :
             props.reviews.map((review) => {
                     return (
@@ -21,4 +22,8 @@ export const ReviewsList = (props) => {
 
 ReviewCard.propTypes = {
     reviews: PropTypes.array
-}
+};
+
+export default connect(
+    (state) => ({ reviews: state.currentRestaurant.reviews })
+)(ReviewsList)
