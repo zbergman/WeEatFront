@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Dropdown, Rating, Item, Checkbox } from 'semantic-ui-react';
+import { Dropdown, Rating, Item, Checkbox, Button } from 'semantic-ui-react';
 import { CUISINE_TYPES } from '../../constants/Constants';
 import { Slider } from "react-semantic-ui-range";
-import { MAX_DELIVERY_TIME_IN_MINUTES_PREDICATE, CUISINE_PREDICATE, MINIMAL_RATING_PREDICATE, TEN_BIS_PREDICATE } from '../../filters/PredicateNames';
-import { predicates } from '../../filters/Predicates';
-import {  addFilter, removeFilter } from '../../actions/index';
+import { MAX_DELIVERY_TIME_IN_MINUTES, CUISINE, MINIMAL_RATING, TEN_BIS } from '../../filters/FiltersNames';
+import {  applyFilter, removeFilter, clearFilters } from '../../actions/index';
 import { connect } from 'react-redux';
 import './FiltersComponent.scss';
+import Icon from "semantic-ui-react/dist/commonjs/elements/Icon";
 
 class FiltersComponent extends Component {
     sliderSettings = {
@@ -15,36 +15,40 @@ class FiltersComponent extends Component {
         max: 120,
         step: 15,
         onChange: value => {
-            this.props.addFilter(
-                MAX_DELIVERY_TIME_IN_MINUTES_PREDICATE,
-                predicates[MAX_DELIVERY_TIME_IN_MINUTES_PREDICATE](value)
+            this.props.applyFilter(
+                MAX_DELIVERY_TIME_IN_MINUTES,
+                value
             );
         }
     };
 
     handleCuisineChange = (e, cuisineObject) => {
-        this.props.addFilter(
-            CUISINE_PREDICATE,
-            predicates[CUISINE_PREDICATE](cuisineObject.value)
+        this.props.applyFilter(
+            CUISINE,
+            cuisineObject.value
         );
     };
 
     handleRatingChange = (e, ratingObject) => {
-        this.props.addFilter(
-            MINIMAL_RATING_PREDICATE,
-            predicates[MINIMAL_RATING_PREDICATE](ratingObject.rating)
+        this.props.applyFilter(
+            MINIMAL_RATING,
+            ratingObject.rating
         );
     };
 
     handleTenBisChange = (e, tenBisObject) => {
         if (tenBisObject.checked) {
-            this.props.addFilter(
-                TEN_BIS_PREDICATE,
-                predicates[TEN_BIS_PREDICATE]()
+            this.props.applyFilter(
+                TEN_BIS,
+                true
             );
         } else {
-            this.props.removeFilter(TEN_BIS_PREDICATE);
+            this.props.removeFilter(TEN_BIS);
         }
+    };
+
+    handleClearFilters = () => {
+        this.props.clearFilters();
     };
 
     render() {
@@ -58,6 +62,7 @@ class FiltersComponent extends Component {
                             selection
                             options={CUISINE_TYPES}
                             onChange={this.handleCuisineChange}
+                            value={this.props.filtersValues[CUISINE]}
                         />
                     </Item.Description>
                 </Item>
@@ -65,7 +70,12 @@ class FiltersComponent extends Component {
                     <Item.Content>
                         <Item.Header>Minimal rating</Item.Header>
                         <Item.Description>
-                            <Rating defaultRating={0} maxRating={5} clearable size='large' onRate={this.handleRatingChange}/>
+                            <Rating rating={this.props.filtersValues[MINIMAL_RATING]}
+                                    maxRating={5}
+                                    clearable
+                                    size='large'
+                                    onRate={this.handleRatingChange}
+                            />
                         </Item.Description>
                     </Item.Content>
                 </Item>
@@ -73,14 +83,27 @@ class FiltersComponent extends Component {
                     <Item.Content>
                         <Item.Header>Maximal delivery time</Item.Header>
                         <Item.Description>
-                            <Slider settings={this.sliderSettings} style={{trackFill: {backgroundColor: "#f61f06"}}}/>
+                            <Slider value={this.props.filtersValues[MAX_DELIVERY_TIME_IN_MINUTES]}
+                                    settings={this.sliderSettings}
+                                    style={{trackFill: {backgroundColor: "#f61f06"}}}
+                            />
                         </Item.Description>
                     </Item.Content>
                 </Item>
                 <Item>
                     <Item.Content>
                         <Item.Description>
-                            <Checkbox label='Accepts 10Bis' onChange={this.handleTenBisChange}/>
+                            <Checkbox checked={this.props.filtersValues[TEN_BIS]} label='Accepts 10Bis' onChange={this.handleTenBisChange}/>
+                        </Item.Description>
+                    </Item.Content>
+                </Item>
+                <Item>
+                    <Item.Content>
+                        <Item.Description>
+                            <Button onClick={this.handleClearFilters}>
+                                <Icon name='times circle outline'/>
+                                Clear All Filters
+                            </Button>
                         </Item.Description>
                     </Item.Content>
                 </Item>
@@ -90,6 +113,6 @@ class FiltersComponent extends Component {
 }
 
 export default connect(
-    (state) => (state),
-    { addFilter, removeFilter }
+    (state) => ({filtersValues: state.filters.values}),
+    { applyFilter, removeFilter, clearFilters }
 )(FiltersComponent)

@@ -1,9 +1,19 @@
-import { LOAD_RESTAURANTS, SET_CURRENT_RESTAURANT, ADD_RESTAURANT, ADD_FILTER, REMOVE_FILTER } from '../constants/ActionTypes';
+import { LOAD_RESTAURANTS, SET_CURRENT_RESTAURANT, ADD_RESTAURANT, APPLY_FILTER, REMOVE_FILTER, CLEAR_FILTERS } from '../constants/ActionTypes';
+import { MINIMAL_RATING, MAX_DELIVERY_TIME_IN_MINUTES, TEN_BIS, CUISINE } from '../filters/FiltersNames';
+import { predicates } from '../filters/Predicates';
 
 const initState = {
     restaurants: [],
     currentRestaurant: {},
-    filters: {}
+    filters: {
+        predicates: {},
+        values: {
+            [CUISINE]: '',
+            [MINIMAL_RATING]: 0,
+            [MAX_DELIVERY_TIME_IN_MINUTES]: 120,
+            [TEN_BIS]: false
+        }
+    }
 };
 
 export default (state = initState, action) => {
@@ -14,20 +24,41 @@ export default (state = initState, action) => {
             return { ...state, currentRestaurant: action.payload };
         case ADD_RESTAURANT:
             return { ...state, restaurants: state.restaurants.concat(action.payload) };
-        case ADD_FILTER:
+        case APPLY_FILTER:
             return {
                 ...state,
                 filters: {
                     ...state.filters,
-                    [action.payload.predicateName]: action.payload.predicate,
+                    predicates: {
+                        ...state.filters.predicates,
+                        [action.payload.predicateName]: predicates[action.payload.predicateName](action.payload.value)
+                    },
+                    values: {
+                        ...state.filters.values,
+                        [action.payload.predicateName]: action.payload.value
+                    }
                 }
             };
         case REMOVE_FILTER: {
-            const updatedFilters = {...state.filters};
+            const updatedFilters = {...state.filters.predicates};
             delete updatedFilters[action.payload];
 
-            return {...state, filters: updatedFilters};
+            return {
+                ...state,
+                filters: {
+                    predicates: updatedFilters,
+                    values: {
+                        ...state.filters.values,
+                        [action.payload]: initState.filters.values[action.payload]
+                    }
+                }
+            };
         }
+        case CLEAR_FILTERS:
+            return {
+                ...state,
+                filters: {...initState.filters}
+            };
         default:
             return state;
     }    

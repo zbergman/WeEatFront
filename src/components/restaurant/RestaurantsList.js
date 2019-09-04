@@ -28,7 +28,7 @@ class RestaurantsList extends Component {
         const { restaurants, filters } = this.props;
         let filteredRestaurants = restaurants;
 
-        Object.values(filters).forEach(filter => {
+        Object.values(filters.predicates).forEach(filter => {
             filteredRestaurants = filteredRestaurants.filter(restaurant => filter(restaurant));
         });
 
