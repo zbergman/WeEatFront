@@ -4,30 +4,32 @@
     align-items: center;
 }
 
-#restaurant-card {
+.restaurantCard {
     @include flexedDiv(row);
     margin: 10px;
     width: 30%;
     min-width: 250px;
     padding: 0 10px;
 
-    #restaurants-details {
+    .restaurantsDetails {
         @include flexedDiv(column);
         align-items: unset;
         margin: 10px;
         color: #4a494b6e;
         font-size: 11px;
 
-        i.active {
-            color: #f61f06 !important;
+        :global {
+            i.active {
+                color: #f61f06 !important;
+            }
         }
 
-        #restaurant-title {
+        .restaurantTitle {
             color: black;
             font-weight: bold;
         }
 
-        #restaurant-measures {
+        .restaurantMeasures {
             @include flexedDiv(row);
             div {
                 padding-right: 10px;

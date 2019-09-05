@@ -1,16 +1,17 @@
-#header-conteiner {
+.headerContainer {
     position: relative;
     text-align: center;
     color: black;
     height: 40%;
+    width: 100%;
 
-    #header-image {
+    .headerImage {
         object-fit: cover;
         height: 100%;
         width: 100%;
     }
 
-    #header-text {
+    .headerText {
         position: absolute;
         top: 30%;
         left: 50%;

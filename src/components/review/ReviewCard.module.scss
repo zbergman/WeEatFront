@@ -1,0 +1,25 @@
+.reviewCardContainer {
+    margin: 20px;
+    font-size: 11px;
+
+    .reviewCardTitle {
+        font-weight: bold;
+        padding-right: 10px;
+    }
+
+    .reviewDate {
+        color: #4a494b6e;
+    }
+
+    :global {
+        div {
+            margin: 5px 0;
+            display: flex;
+            flex-direction: row;
+
+            i.active {
+                color: #f61f06 !important;
+            }
+        }
+    }
+}
