@@ -1,12 +1,12 @@
-import React from 'react';
-import './Header.scss';
-import headerImage from '../../assets/images/Pizza.png';
+import React from "react";
+import styles from "./Header.module.scss";
 
 export const Header = () => {
-    return (
-        <div id = 'header-conteiner'>
-            <img id = 'header-image' src = { headerImage } alt = 'We Eat header' />
-            <div id = 'header-text'>WeEat</div>
-        </div>
-    );
+  return (
+    <header className={styles.headerContainer}>
+      <div className={styles.headerImage}>
+        <div className={styles.headerText}>WeEat</div>
+      </div>
+    </header>
+  );
 };

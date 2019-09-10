@@ -1,0 +1,29 @@
+.filtersContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-evenly;
+
+    :global {
+        .item {
+            padding: 20px 0;
+            font-size: 18px;
+
+            .header {
+                padding-bottom: 8px;
+            }
+
+            .description {
+                .rating {
+                    i.icon {
+                        font-size: 18px !important;
+                    }
+
+                    i.active, i.selected, i:hover {
+                        color: var(--red);
+                    }
+                }
+            }
+        }
+    }
+}
