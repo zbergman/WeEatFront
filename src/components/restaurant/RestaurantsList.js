@@ -59,7 +59,10 @@ class RestaurantsList extends Component {
   }
 }
 
+const mapStateToProps = state => ({ restaurants: state.restaurants });
+const mapDispatchToProps = { getRestaurants, setCurrentRestaurant };
+
 export default connect(
-  state => ({ restaurants: state.restaurants }),
-  { getRestaurants, setCurrentRestaurant }
+  mapStateToProps,
+  mapDispatchToProps
 )(RestaurantsList);

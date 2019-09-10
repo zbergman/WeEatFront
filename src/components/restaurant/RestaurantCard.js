@@ -17,11 +17,7 @@ export class RestaurantCard extends Component {
           <div>{this.props.address}</div>
           <div className={styles.restaurantMeasures}>
             <div>~{this.props.maxDeliveryTimeInMinutes} Minutes</div>
-            {this.props.is10Bis && (
-              <div>
-                <TenBis />
-              </div>
-            )}
+            {this.props.is10Bis && <TenBis className={styles.tenBisImage}/>}
             <Rating
               defaultRating={Math.round(this.props.rating)}
               maxRating={5}

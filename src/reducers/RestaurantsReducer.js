@@ -3,6 +3,7 @@ import {
   SET_CURRENT_RESTAURANT,
   ADD_RESTAURANT
 } from "../constants/ActionTypes";
+import { handleActions } from "redux-actions";
 
 const initialState = {
   restaurants: [],
@@ -10,15 +11,22 @@ const initialState = {
   filters: {}
 };
 
-export default (state = initialState, action) => {
-  switch (action.type) {
-    case LOAD_RESTAURANTS:
-      return { ...state, restaurants: action.payload };
-    case SET_CURRENT_RESTAURANT:
-      return { ...state, currentRestaurant: action.payload };
-    case ADD_RESTAURANT:
-      return { ...state, restaurants: [...state.restaurants, action.payload] };
-    default:
-      return state;
-  }
-};
+export default handleActions(
+  {
+    [LOAD_RESTAURANTS]: (state, action) => ({
+      ...state,
+      restaurants: action.payload
+    }),
+
+    [SET_CURRENT_RESTAURANT]: (state, action) => ({
+      ...state,
+      currentRestaurant: action.payload
+    }),
+
+    [ADD_RESTAURANT]: (state, action) => ({
+      ...state,
+      restaurants: [...state.restaurants, action.payload]
+    })
+  },
+  initialState
+);

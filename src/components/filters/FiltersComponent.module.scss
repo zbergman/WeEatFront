@@ -4,7 +4,6 @@
     align-items: flex-start;
     justify-content: space-evenly;
 
-
     :global {
         .item {
             padding: 20px 0;
@@ -21,7 +20,7 @@
                     }
 
                     i.active, i.selected, i:hover {
-                        color: #f61f06;
+                        color: var(--red);
                     }
                 }
             }

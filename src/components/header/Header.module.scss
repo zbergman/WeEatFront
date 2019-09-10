@@ -2,21 +2,20 @@
     position: relative;
     text-align: center;
     color: black;
-    height: 40%;
+    height: 300px;
     width: 100%;
 
     .headerImage {
-        object-fit: cover;
+        background-size: cover;
         height: 100%;
-        width: 100%;
-    }
+        background-image: url("../../assets/images/Pizza.png");
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-    .headerText {
-        position: absolute;
-        top: 30%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 80px;
-        font-family: sans-serif;
+        .headerText {
+            font-size: 80px;
+            font-family: sans-serif;
+        }
     }
 }
