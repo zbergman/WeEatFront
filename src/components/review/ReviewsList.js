@@ -6,22 +6,19 @@ import { connect } from "react-redux";
 import { getReviews } from "../../selectors/ReviewSelectors";
 import styles from "./ReviewsList.module.scss";
 
-const ReviewsList = (props) => {
+const ReviewsList = props => {
   const { reviews } = props;
 
   if (!reviews || reviews.length === 0) {
     return <div className={styles.noReviews}>No reviews.</div>;
   }
 
-  return reviews.map((review, index) => {
-      return (
-        <div key={review.id}>
-          {index > 0 && <Divider />}
-          <ReviewCard {...review} />
-        </div>
-      );
-    }
-  );
+  return reviews.map((review, index) => (
+    <div key={review.id}>
+      {index > 0 && <Divider />}
+      <ReviewCard {...review} />
+    </div>
+  ));
 };
 
 ReviewsList.propTypes = {
@@ -29,6 +26,4 @@ ReviewsList.propTypes = {
 };
 const mapStateToProps = state => ({ reviews: getReviews(state) });
 
-export default connect(mapStateToProps)(
-  ReviewsList
-);
+export default connect(mapStateToProps)(ReviewsList);

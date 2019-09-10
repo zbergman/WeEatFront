@@ -4,15 +4,17 @@ import { CUISINE_TYPES } from "../../constants/Constants";
 import { Slider } from "react-semantic-ui-range";
 import styles from "./FiltersComponent.module.scss";
 
-export const FiltersComponent = () => {
-  const sliderSettings = {
-    start: 120,
-    min: 0,
-    max: 120,
-    step: 15,
-    onChange: value => {}
-  };
+const SLIDER_STYLE = { trackFill: { backgroundColor: "#f61f06" } };
 
+const sliderSettings = {
+  start: 120,
+  min: 0,
+  max: 120,
+  step: 15,
+  onChange: value => {}
+};
+
+export const FiltersComponent = () => {
   return (
     <div className={styles.filtersContainer}>
       <Item>
@@ -37,10 +39,7 @@ export const FiltersComponent = () => {
         <Item.Content>
           <Item.Header>Maximal delivery time</Item.Header>
           <Item.Description>
-            <Slider
-              settings={sliderSettings}
-              style={{ trackFill: { backgroundColor: "#f61f06" } }}
-            />
+            <Slider settings={sliderSettings} style={SLIDER_STYLE} />
           </Item.Description>
         </Item.Content>
       </Item>

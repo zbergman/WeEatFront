@@ -6,11 +6,11 @@ import { FiltersComponent } from "../components/filters/FiltersComponent";
 class Home extends Component {
   render() {
     return (
-      <React.Fragment>
+      <>
         <Header />
         <FiltersComponent />
         <RestaurantsList />
-      </React.Fragment>
+      </>
     );
   }
 }

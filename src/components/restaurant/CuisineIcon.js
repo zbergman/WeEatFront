@@ -1,14 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./CuisineIcon.module.scss";
-import { CUISINE_TYPES } from "../../constants/Constants";
+import { CUISINE_ICONS } from "../../constants/Constants";
+import cn from 'classnames';
 
 export const CuisineIcon = props => {
-  const cuisines = {};
-  CUISINE_TYPES.forEach(cuisine => (cuisines[cuisine.key] = cuisine.iconClass));
-
   return (
-    <i className={`${cuisines[props.cuisine] || cuisines["default"]} ${styles.cuisineIcon}`}/>
+    <i className={cn(CUISINE_ICONS[props.cuisine] || CUISINE_ICONS["default"], styles.cuisineIcon)}/>
   );
 };
 

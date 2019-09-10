@@ -4,15 +4,15 @@ import { RestaurantCard } from "./RestaurantCard";
 import PropTypes from "prop-types";
 import ReviewsList from "../review/ReviewsList";
 import { connect } from "react-redux";
-import { getRestaurants, setCurrentRestaurant } from "../../actions/index";
+import { getRestaurants, setCurrentRestaurantId } from "../../actions/index";
 import styles from "./RestaurantsList.module.scss";
 
 class RestaurantsList extends Component {
-  state = { activeIndex: -1 };
+  state = { activeIndex: null };
 
   static propTypes = {
     restaurants: PropTypes.array,
-    setCurrentRestaurant: PropTypes.func,
+    setCurrentRestaurantId: PropTypes.func,
     getRestaurants: PropTypes.func
   };
 
@@ -23,12 +23,12 @@ class RestaurantsList extends Component {
   handleClick = (e, titleProps) => {
     const { index } = titleProps;
     const { activeIndex } = this.state;
-    const newIndex = activeIndex === index ? -1 : index;
-    const newCurrentRestaurant =
-      newIndex < 0 ? {} : this.props.restaurants[newIndex];
+    const newIndex = activeIndex === index ? null : index;
+    const newCurrentRestaurantId =
+      newIndex && this.props.restaurants[newIndex].id;
 
     this.setState({ activeIndex: newIndex });
-    this.props.setCurrentRestaurant(newCurrentRestaurant);
+    this.props.setCurrentRestaurantId(newCurrentRestaurantId)
   };
 
   render() {
@@ -60,7 +60,7 @@ class RestaurantsList extends Component {
 }
 
 const mapStateToProps = state => ({ restaurants: state.restaurants });
-const mapDispatchToProps = { getRestaurants, setCurrentRestaurant };
+const mapDispatchToProps = { getRestaurants, setCurrentRestaurantId };
 
 export default connect(
   mapStateToProps,
