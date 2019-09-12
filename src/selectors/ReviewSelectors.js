@@ -1,8 +1,7 @@
 import { createSelector } from "reselect";
-
-const getReviewsOfCurrentRestaurant = state => state.currentRestaurant.reviews;
+import { getCurrentRestaurant } from './RestaurantSelectors';
 
 export const getReviews = createSelector(
-  [getReviewsOfCurrentRestaurant],
-  reviewsOfCurrentRestaurant => reviewsOfCurrentRestaurant
+  [getCurrentRestaurant],
+  currentRestaurant => currentRestaurant && currentRestaurant.reviews
 );

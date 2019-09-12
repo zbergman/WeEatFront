@@ -12,7 +12,9 @@ import { applyFilter, removeFilter, clearFilters } from "../../actions/index";
 import { connect } from "react-redux";
 import styles from "./FiltersComponent.module.scss";
 import Icon from "semantic-ui-react/dist/commonjs/elements/Icon";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+
+const SLIDER_STYLE = { trackFill: { backgroundColor: "#f61f06" } };
 
 class FiltersComponent extends Component {
   static propTypes = {
@@ -88,7 +90,7 @@ class FiltersComponent extends Component {
               <Slider
                 value={this.props.filtersValues[MAX_DELIVERY_TIME_IN_MINUTES]}
                 settings={this.sliderSettings}
-                style={{ trackFill: { backgroundColor: "#f61f06" } }}
+                style={SLIDER_STYLE}
               />
             </Item.Description>
           </Item.Content>

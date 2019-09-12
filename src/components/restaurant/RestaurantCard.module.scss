@@ -1,3 +1,5 @@
+@import "../../assets/stylesheets/colors";
+
 @mixin flexedDiv($flexDirection) {
     display: flex;
     flex-direction: $flexDirection;
@@ -14,17 +16,17 @@
         @include flexedDiv(column);
         align-items: unset;
         margin: 10px;
-        color: var(--grey);
+        color: $grey;
         font-size: 11px;
 
         :global {
             i.active {
-                color: var(--red) !important;
+                color: $red !important;
             }
         }
 
         .restaurantTitle {
-            color: black;
+            color: $titleColor;
             font-weight: bold;
         }
 

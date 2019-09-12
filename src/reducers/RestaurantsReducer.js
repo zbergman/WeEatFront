@@ -1,10 +1,10 @@
 import {
   LOAD_RESTAURANTS,
-  SET_CURRENT_RESTAURANT,
   ADD_RESTAURANT,
   APPLY_FILTER,
   REMOVE_FILTER,
-  CLEAR_FILTERS
+  CLEAR_FILTERS,
+  SET_CURRENT_RESTAURANT_ID,
 } from "../constants/ActionTypes";
 import {
   MINIMAL_RATING,
@@ -16,8 +16,8 @@ import { predicates } from "../filters/Predicates";
 import { handleActions } from "redux-actions";
 
 const initialState = {
-  restaurants: [],
-  currentRestaurant: {},
+  restaurants: {},
+  currentRestaurantId: undefined,
   filters: {
     predicates: {},
     values: {
@@ -33,17 +33,20 @@ export default handleActions(
   {
     [LOAD_RESTAURANTS]: (state, action) => ({
       ...state,
-      restaurants: action.payload
+      restaurants: action.payload.reduce((memo, restaurant) => {
+        memo[restaurant.id] = restaurant;
+        return memo;
+      }, {})
     }),
 
-    [SET_CURRENT_RESTAURANT]: (state, action) => ({
+    [SET_CURRENT_RESTAURANT_ID]: (state, action) => ({
       ...state,
-      currentRestaurant: action.payload
+      currentRestaurantId: action.payload
     }),
 
     [ADD_RESTAURANT]: (state, action) => ({
       ...state,
-      restaurants: [...state.restaurants, action.payload]
+      restaurants: { ...state.restaurants, [action.payload.id]: action.payload }
     }),
 
     [APPLY_FILTER]: (state, action) => ({

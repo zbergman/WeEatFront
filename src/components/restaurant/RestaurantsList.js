@@ -4,15 +4,15 @@ import { RestaurantCard } from "./RestaurantCard";
 import PropTypes from "prop-types";
 import ReviewsList from "../review/ReviewsList";
 import { connect } from "react-redux";
-import { getRestaurants, setCurrentRestaurant } from "../../actions/index";
+import { getRestaurants, setCurrentRestaurantId } from "../../actions/index";
 import styles from "./RestaurantsList.module.scss";
 
 class RestaurantsList extends Component {
-  state = { activeIndex: -1 };
+  state = { activeRestaurantId: null };
 
   static propTypes = {
-    restaurants: PropTypes.array,
-    setCurrentRestaurant: PropTypes.func,
+    restaurants: PropTypes.object,
+    setCurrentRestaurantId: PropTypes.func,
     getRestaurants: PropTypes.func,
     filters: PropTypes.object
   };
@@ -23,18 +23,16 @@ class RestaurantsList extends Component {
 
   handleClick = (e, titleProps) => {
     const { index } = titleProps;
-    const { activeIndex } = this.state;
-    const newIndex = activeIndex === index ? -1 : index;
-    const newCurrentRestaurant =
-      newIndex < 0 ? {} : this.props.restaurants[newIndex];
+    const { activeRestaurantId } = this.state;
+    const newCurrentRestaurantId = activeRestaurantId === index ? null : index;
 
-    this.setState({ activeIndex: newIndex });
-    this.props.setCurrentRestaurant(newCurrentRestaurant);
+    this.setState({ activeRestaurantId: newCurrentRestaurantId });
+    this.props.setCurrentRestaurantId(newCurrentRestaurantId);
   };
 
   filterRestaurants() {
     const { restaurants, filters } = this.props;
-    let filteredRestaurants = restaurants;
+    let filteredRestaurants = Object.values(restaurants);
     Object.values(filters.predicates).forEach(filter => {
       filteredRestaurants = filteredRestaurants.filter(restaurant =>
         filter(restaurant)
@@ -45,23 +43,23 @@ class RestaurantsList extends Component {
   }
 
   render() {
-    const { activeIndex } = this.state;
+    const { activeRestaurantId } = this.state;
     const filteredRestaurants = this.filterRestaurants();
     return (
       <Accordion>
-        {filteredRestaurants.map((restaurant, index) => {
+        {Object.values(filteredRestaurants).map(restaurant => {
           return (
             <div key={restaurant.id}>
               <Accordion.Title
-                active={activeIndex === index}
-                index={index}
+                active={activeRestaurantId === restaurant.id}
+                index={restaurant.id}
                 onClick={this.handleClick}
                 className={styles.accordionTitleContainer}
               >
                 <Icon name="dropdown" />
                 <RestaurantCard {...restaurant} />
               </Accordion.Title>
-              <AccordionContent active={activeIndex === index}>
+              <AccordionContent active={activeRestaurantId === restaurant.id}>
                 <ReviewsList reviews={restaurant.reviews} />
               </AccordionContent>
             </div>
@@ -76,7 +74,7 @@ const mapStateToProps = state => ({
   restaurants: state.restaurants,
   filters: state.filters
 });
-const mapDispatchToProps = { getRestaurants, setCurrentRestaurant };
+const mapDispatchToProps = { getRestaurants, setCurrentRestaurantId };
 
 export default connect(
   mapStateToProps,
