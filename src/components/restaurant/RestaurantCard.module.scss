@@ -1,0 +1,41 @@
+@import "../../assets/stylesheets/colors";
+
+@mixin flexedDiv($flexDirection) {
+    display: flex;
+    flex-direction: $flexDirection;
+    align-items: center;
+}
+
+.restaurantCard {
+    @include flexedDiv(row);
+    margin: 10px 20px;
+    width: 30%;
+    min-width: 250px;
+
+    .restaurantsDetails {
+        @include flexedDiv(column);
+        align-items: unset;
+        margin: 10px;
+        color: $grey;
+        font-size: 11px;
+
+        :global {
+            i.active {
+                color: $red !important;
+            }
+        }
+
+        .restaurantTitle {
+            color: $titleColor;
+            font-weight: bold;
+        }
+
+        .restaurantMeasures {
+            @include flexedDiv(row);
+
+            div, .tenBisImage {
+                margin-right: 10px;
+            }
+        }
+    }
+}
