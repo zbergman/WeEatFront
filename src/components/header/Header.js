@@ -1,4 +1,5 @@
 import React from "react";
+import { Input } from 'semantic-ui-react'
 import styles from "./Header.module.scss";
 
 export const Header = () => {
