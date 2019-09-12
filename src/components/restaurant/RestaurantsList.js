@@ -32,14 +32,10 @@ class RestaurantsList extends Component {
 
   filterRestaurants() {
     const { restaurants, filters } = this.props;
-    let filteredRestaurants = Object.values(restaurants);
-    Object.values(filters.predicates).forEach(filter => {
-      filteredRestaurants = filteredRestaurants.filter(restaurant =>
-        filter(restaurant)
-      );
-    });
 
-    return filteredRestaurants;
+    return Object.values(filters.predicates).reduce((filteredRestaurants, predicate) => {
+      return filteredRestaurants.filter(predicate);
+    }, Object.values(restaurants));
   }
 
   render() {
