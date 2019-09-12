@@ -43,11 +43,9 @@ class FiltersComponent extends Component {
   };
 
   handleTenBisChange = (e, tenBisObject) => {
-    if (tenBisObject.checked) {
-      this.props.applyFilter(TEN_BIS, true);
-    } else {
-      this.props.removeFilter(TEN_BIS);
-    }
+    tenBisObject.checked
+      ? this.props.applyFilter(TEN_BIS, true)
+      : this.props.removeFilter(TEN_BIS);
   };
 
   handleClearFilters = () => {
@@ -121,7 +119,10 @@ class FiltersComponent extends Component {
   }
 }
 
+const mapStateToProps = state => ({ filtersValues: state.filters.values });
+const mapDispatchToProps = { applyFilter, removeFilter, clearFilters };
+
 export default connect(
-  state => ({ filtersValues: state.filters.values }),
-  { applyFilter, removeFilter, clearFilters }
+  mapStateToProps,
+  mapDispatchToProps
 )(FiltersComponent);

@@ -1,10 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Rating } from "semantic-ui-react";
-import { dateFormatter } from "../../utils/Formatters";
+import spacetime  from "spacetime";
 import styles from "./ReviewCard.module.scss";
 
 export const ReviewCard = props => {
+  // const reviewDate = dateFormatter(props.createdAt);
+  const reviewDate = spacetime(props.createdAt).format("nice-year");
+
   return (
     <div className={styles.reviewCardContainer}>
       <div>
@@ -15,7 +18,7 @@ export const ReviewCard = props => {
           disabled
         />
       </div>
-      <div className={styles.reviewDate}>{dateFormatter(props.createdAt)}</div>
+      <div className={styles.reviewDate}>{reviewDate}</div>
       <div>{props.text}</div>
     </div>
   );

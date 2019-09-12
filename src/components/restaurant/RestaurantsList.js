@@ -39,15 +39,15 @@ class RestaurantsList extends Component {
   }
 
   render() {
-    const { activeRestaurantId } = this.state;
     const filteredRestaurants = this.filterRestaurants();
+
     return (
       <Accordion>
         {Object.values(filteredRestaurants).map(restaurant => {
           return (
             <div key={restaurant.id}>
               <Accordion.Title
-                active={activeRestaurantId === restaurant.id}
+                active={this.state.activeRestaurantId === restaurant.id}
                 index={restaurant.id}
                 onClick={this.handleClick}
                 className={styles.accordionTitleContainer}
@@ -55,7 +55,7 @@ class RestaurantsList extends Component {
                 <Icon name="dropdown" />
                 <RestaurantCard {...restaurant} />
               </Accordion.Title>
-              <AccordionContent active={activeRestaurantId === restaurant.id}>
+              <AccordionContent active={this.state.activeRestaurantId === restaurant.id}>
                 <ReviewsList reviews={restaurant.reviews} />
               </AccordionContent>
             </div>
