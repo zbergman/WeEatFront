@@ -6,7 +6,7 @@ import {
 import { handleActions } from "redux-actions";
 
 const initialState = {
-  restaurants: [],
+  restaurants: {},
   currentRestaurant: {},
   currentRestaurantId: undefined,
   filters: {}
@@ -16,7 +16,10 @@ export default handleActions(
   {
     [LOAD_RESTAURANTS]: (state, action) => ({
       ...state,
-      restaurants: action.payload
+      restaurants: action.payload.reduce((memo, restaurant) => {
+        memo[restaurant.id] = restaurant;
+        return memo;
+      }, {})
     }),
 
     [SET_CURRENT_RESTAURANT_ID]: (state, action) => ({
@@ -26,7 +29,7 @@ export default handleActions(
 
     [ADD_RESTAURANT]: (state, action) => ({
       ...state,
-      restaurants: [...state.restaurants, action.payload]
+      restaurants: { ...state.restaurants, [action.payload.id]: action.payload }
     })
   },
   initialState

@@ -1,7 +1,9 @@
+@import "../../assets/stylesheets/colors";
+
 .headerContainer {
   position: relative;
   text-align: center;
-  color: black;
+  color: $titleColor;
   height: 300px;
   width: 100%;
 

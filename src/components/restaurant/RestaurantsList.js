@@ -8,10 +8,10 @@ import { getRestaurants, setCurrentRestaurantId } from "../../actions/index";
 import styles from "./RestaurantsList.module.scss";
 
 class RestaurantsList extends Component {
-  state = { activeIndex: null };
+  state = { activeRestaurantId: null };
 
   static propTypes = {
-    restaurants: PropTypes.array,
+    restaurants: PropTypes.object,
     setCurrentRestaurantId: PropTypes.func,
     getRestaurants: PropTypes.func
   };
@@ -22,33 +22,31 @@ class RestaurantsList extends Component {
 
   handleClick = (e, titleProps) => {
     const { index } = titleProps;
-    const { activeIndex } = this.state;
-    const newIndex = activeIndex === index ? null : index;
-    const newCurrentRestaurantId =
-      newIndex && this.props.restaurants[newIndex].id;
+    const { activeRestaurantId } = this.state;
+    const newCurrentRestaurantId = activeRestaurantId === index ? null : index;
 
-    this.setState({ activeIndex: newIndex });
+    this.setState({ activeRestaurantId: newCurrentRestaurantId });
     this.props.setCurrentRestaurantId(newCurrentRestaurantId)
   };
 
   render() {
-    const { activeIndex } = this.state;
+    const { activeRestaurantId } = this.state;
 
     return (
       <Accordion>
-        {this.props.restaurants.map((restaurant, index) => {
+        {Object.values(this.props.restaurants).map((restaurant) => {
           return (
             <div key={restaurant.id}>
               <Accordion.Title
-                active={activeIndex === index}
-                index={index}
+                active={activeRestaurantId === restaurant.id}
+                index={restaurant.id}
                 onClick={this.handleClick}
                 className={styles.accordionTitleContainer}
               >
                 <Icon name="dropdown" />
                 <RestaurantCard {...restaurant} />
               </Accordion.Title>
-              <AccordionContent active={activeIndex === index}>
+              <AccordionContent active={activeRestaurantId === restaurant.id}>
                 <ReviewsList reviews={restaurant.reviews} />
               </AccordionContent>
             </div>

@@ -1,3 +1,5 @@
+@import "../../assets/stylesheets/colors";
+
 .reviewCardContainer {
     margin: 20px;
     font-size: 11px;
@@ -8,7 +10,7 @@
     }
 
     .reviewDate {
-        color: var(--grey);
+        color: $grey;
     }
 
     :global {
@@ -18,7 +20,7 @@
             flex-direction: row;
 
             i.active {
-                color: var(--red) !important;
+                color: $red !important;
             }
         }
     }
