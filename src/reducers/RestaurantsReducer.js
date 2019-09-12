@@ -4,7 +4,7 @@ import {
   APPLY_FILTER,
   REMOVE_FILTER,
   CLEAR_FILTERS,
-  SET_CURRENT_RESTAURANT_ID,
+  SET_CURRENT_RESTAURANT_ID
 } from "../constants/ActionTypes";
 import {
   MINIMAL_RATING,
