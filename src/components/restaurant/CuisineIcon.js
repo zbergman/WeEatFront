@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "./CuisineIcon.module.scss";
 import { CUISINE_ICONS } from "../../constants/Constants";
-import cn from 'classnames';
+import cn from "classnames";
 
 export const CuisineIcon = props => {
   return (

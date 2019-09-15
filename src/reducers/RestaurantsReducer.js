@@ -1,15 +1,32 @@
 import {
   LOAD_RESTAURANTS,
-  SET_CURRENT_RESTAURANT_ID,
-  ADD_RESTAURANT
+  ADD_RESTAURANT,
+  APPLY_FILTER,
+  REMOVE_FILTER,
+  CLEAR_FILTERS,
+  SET_CURRENT_RESTAURANT_ID
 } from "../constants/ActionTypes";
+import {
+  MINIMAL_RATING,
+  MAX_DELIVERY_TIME_IN_MINUTES,
+  TEN_BIS,
+  CUISINE
+} from "../filters/FiltersNames";
+import { predicates } from "../filters/Predicates";
 import { handleActions } from "redux-actions";
 
 const initialState = {
   restaurants: {},
-  currentRestaurant: {},
   currentRestaurantId: undefined,
-  filters: {}
+  filters: {
+    predicates: {},
+    values: {
+      [CUISINE]: "",
+      [MINIMAL_RATING]: 0,
+      [MAX_DELIVERY_TIME_IN_MINUTES]: 120,
+      [TEN_BIS]: false
+    }
+  }
 };
 
 export default handleActions(
@@ -30,6 +47,44 @@ export default handleActions(
     [ADD_RESTAURANT]: (state, action) => ({
       ...state,
       restaurants: { ...state.restaurants, [action.payload.id]: action.payload }
+    }),
+
+    [APPLY_FILTER]: (state, action) => ({
+      ...state,
+      filters: {
+        ...state.filters,
+        predicates: {
+          ...state.filters.predicates,
+          [action.payload.predicateName]: predicates[
+            action.payload.predicateName
+          ](action.payload.value)
+        },
+        values: {
+          ...state.filters.values,
+          [action.payload.predicateName]: action.payload.value
+        }
+      }
+    }),
+
+    [REMOVE_FILTER]: (state, action) => {
+      const updatedFilters = { ...state.filters.predicates };
+      delete updatedFilters[action.payload];
+
+      return {
+        ...state,
+        filters: {
+          predicates: updatedFilters,
+          values: {
+            ...state.filters.values,
+            [action.payload]: initialState.filters.values[action.payload]
+          }
+        }
+      };
+    },
+
+    [CLEAR_FILTERS]: state => ({
+      ...state,
+      filters: { ...initialState.filters }
     })
   },
   initialState

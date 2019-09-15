@@ -1,17 +1,18 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { Accordion, Icon, AccordionContent } from "semantic-ui-react";
 import { RestaurantCard } from "./RestaurantCard";
 import PropTypes from "prop-types";
 import ReviewsList from "../review/ReviewsList";
 import { connect } from "react-redux";
 import { getRestaurants, setCurrentRestaurantId } from "../../actions/index";
+import { getFilteredRestaurants } from "../../selectors/RestaurantSelectors";
 import styles from "./RestaurantsList.module.scss";
 
-class RestaurantsList extends Component {
+class RestaurantsList extends PureComponent {
   state = { activeRestaurantId: null };
 
   static propTypes = {
-    restaurants: PropTypes.object,
+    filteredRestaurants: PropTypes.func,
     setCurrentRestaurantId: PropTypes.func,
     getRestaurants: PropTypes.func
   };
@@ -26,19 +27,19 @@ class RestaurantsList extends Component {
     const newCurrentRestaurantId = activeRestaurantId === index ? null : index;
 
     this.setState({ activeRestaurantId: newCurrentRestaurantId });
-    this.props.setCurrentRestaurantId(newCurrentRestaurantId)
+    this.props.setCurrentRestaurantId(newCurrentRestaurantId);
   };
 
   render() {
-    const { activeRestaurantId } = this.state;
+    const { filteredRestaurants } = this.props;
 
     return (
       <Accordion>
-        {Object.values(this.props.restaurants).map((restaurant) => {
+        {filteredRestaurants.map(restaurant => {
           return (
             <div key={restaurant.id}>
               <Accordion.Title
-                active={activeRestaurantId === restaurant.id}
+                active={this.state.activeRestaurantId === restaurant.id}
                 index={restaurant.id}
                 onClick={this.handleClick}
                 className={styles.accordionTitleContainer}
@@ -46,7 +47,9 @@ class RestaurantsList extends Component {
                 <Icon name="dropdown" />
                 <RestaurantCard {...restaurant} />
               </Accordion.Title>
-              <AccordionContent active={activeRestaurantId === restaurant.id}>
+              <AccordionContent
+                active={this.state.activeRestaurantId === restaurant.id}
+              >
                 <ReviewsList reviews={restaurant.reviews} />
               </AccordionContent>
             </div>
@@ -57,7 +60,9 @@ class RestaurantsList extends Component {
   }
 }
 
-const mapStateToProps = state => ({ restaurants: state.restaurants });
+const mapStateToProps = state => ({
+  filteredRestaurants: getFilteredRestaurants(state)
+});
 const mapDispatchToProps = { getRestaurants, setCurrentRestaurantId };
 
 export default connect(
