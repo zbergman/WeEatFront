@@ -1,20 +1,20 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { Accordion, Icon, AccordionContent } from "semantic-ui-react";
 import { RestaurantCard } from "./RestaurantCard";
 import PropTypes from "prop-types";
 import ReviewsList from "../review/ReviewsList";
 import { connect } from "react-redux";
 import { getRestaurants, setCurrentRestaurantId } from "../../actions/index";
+import { getFilteredRestaurants } from "../../selectors/RestaurantSelectors";
 import styles from "./RestaurantsList.module.scss";
 
-class RestaurantsList extends Component {
+class RestaurantsList extends PureComponent {
   state = { activeRestaurantId: null };
 
   static propTypes = {
-    restaurants: PropTypes.object,
+    filteredRestaurants: PropTypes.func,
     setCurrentRestaurantId: PropTypes.func,
-    getRestaurants: PropTypes.func,
-    filters: PropTypes.object
+    getRestaurants: PropTypes.func
   };
 
   componentDidMount() {
@@ -30,20 +30,12 @@ class RestaurantsList extends Component {
     this.props.setCurrentRestaurantId(newCurrentRestaurantId);
   };
 
-  filterRestaurants() {
-    const { restaurants, filters } = this.props;
-
-    return Object.values(filters.predicates).reduce((filteredRestaurants, predicate) => {
-      return filteredRestaurants.filter(predicate);
-    }, Object.values(restaurants));
-  }
-
   render() {
-    const filteredRestaurants = this.filterRestaurants();
+    const { filteredRestaurants } = this.props;
 
     return (
       <Accordion>
-        {Object.values(filteredRestaurants).map(restaurant => {
+        {filteredRestaurants.map(restaurant => {
           return (
             <div key={restaurant.id}>
               <Accordion.Title
@@ -55,7 +47,9 @@ class RestaurantsList extends Component {
                 <Icon name="dropdown" />
                 <RestaurantCard {...restaurant} />
               </Accordion.Title>
-              <AccordionContent active={this.state.activeRestaurantId === restaurant.id}>
+              <AccordionContent
+                active={this.state.activeRestaurantId === restaurant.id}
+              >
                 <ReviewsList reviews={restaurant.reviews} />
               </AccordionContent>
             </div>
@@ -67,8 +61,7 @@ class RestaurantsList extends Component {
 }
 
 const mapStateToProps = state => ({
-  restaurants: state.restaurants,
-  filters: state.filters
+  filteredRestaurants: getFilteredRestaurants(state)
 });
 const mapDispatchToProps = { getRestaurants, setCurrentRestaurantId };
 
