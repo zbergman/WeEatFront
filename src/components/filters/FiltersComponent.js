@@ -119,7 +119,7 @@ class FiltersComponent extends Component {
   }
 }
 
-const mapStateToProps = state => ({ filtersValues: state.filters.values });
+const mapStateToProps = state => ({ filtersValues: state.restaurantReducer.filters.values });
 const mapDispatchToProps = { applyFilter, removeFilter, clearFilters };
 
 export default connect(
