@@ -14,10 +14,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 
     .headerText {
       font-size: 80px;
       font-family: sans-serif;
+      margin-bottom: 50px;
     }
   }
 }

@@ -12,7 +12,7 @@ class RestaurantsList extends PureComponent {
   state = { activeRestaurantId: null };
 
   static propTypes = {
-    filteredRestaurants: PropTypes.func,
+    filteredRestaurants: PropTypes.array,
     setCurrentRestaurantId: PropTypes.func,
     getRestaurants: PropTypes.func
   };
