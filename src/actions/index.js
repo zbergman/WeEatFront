@@ -4,7 +4,8 @@ import {
   APPLY_FILTER,
   REMOVE_FILTER,
   CLEAR_FILTERS,
-  SET_CURRENT_RESTAURANT_ID
+  SET_CURRENT_RESTAURANT_ID,
+  SET_MODAL_OPEN_STATE
 } from "../constants/ActionTypes";
 import { fetchRestaurants, createRestaurant } from "../lib/RestaurantServices";
 import { createAction } from "redux-actions";
@@ -14,7 +15,14 @@ export const setCurrentRestaurantId = createAction(SET_CURRENT_RESTAURANT_ID);
 export const addRestaurant = createAction(ADD_RESTAURANT);
 export const clearFilters = createAction(CLEAR_FILTERS);
 export const removeFilter = createAction(REMOVE_FILTER);
-export const applyFilter = createAction(APPLY_FILTER, (predicateName, value) => ({predicateName, value}));
+export const applyFilter = createAction(
+  APPLY_FILTER,
+  (predicateName, value) => ({ predicateName, value })
+);
+export const setModalOpenState = createAction(
+  SET_MODAL_OPEN_STATE,
+  (modalName, value) => ({ modalName, value })
+);
 
 export const getRestaurants = () => async dispatch => {
   const restaurants = await fetchRestaurants();

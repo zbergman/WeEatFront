@@ -1,0 +1,1 @@
+export const IS_ADD_RESTAURANT_OPEN = "isAddRestaurantOpen";

@@ -1,0 +1,13 @@
+.addRestaurantContainer {
+  display: flex;
+  flex-direction: column;
+
+  .buttonsContainer {
+    display: flex;
+    justify-content: space-between;
+
+    .button {
+      width: 220px;
+    }
+  }
+}

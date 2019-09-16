@@ -1,9 +1,9 @@
 import { createSelector } from "reselect";
 
 const getCurrentRestaurantById = state =>
-  state.restaurants[state.currentRestaurantId];
-const getRestaurants = state => Object.values(state.restaurants);
-const getFiltersPredicates = state => Object.values(state.filters.predicates);
+  state.restaurantReducer.restaurants[state.restaurantReducer.currentRestaurantId];
+const getRestaurants = state => Object.values(state.restaurantReducer.restaurants);
+const getFiltersPredicates = state => Object.values(state.restaurantReducer.filters.predicates);
 
 export const getCurrentRestaurant = createSelector(
   [getCurrentRestaurantById],

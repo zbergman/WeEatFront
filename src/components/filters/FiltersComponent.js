@@ -12,6 +12,7 @@ import { applyFilter, removeFilter, clearFilters } from "../../actions/index";
 import { connect } from "react-redux";
 import styles from "./FiltersComponent.module.scss";
 import Icon from "semantic-ui-react/dist/commonjs/elements/Icon";
+import { getRestaurantsFilters } from "../../selectors/FiltersSelectors";
 import PropTypes from "prop-types";
 
 const SLIDER_STYLE = { trackFill: { backgroundColor: "#f61f06" } };
@@ -119,7 +120,7 @@ class FiltersComponent extends Component {
   }
 }
 
-const mapStateToProps = state => ({ filtersValues: state.filters.values });
+const mapStateToProps = state => ({ filtersValues: getRestaurantsFilters(state) });
 const mapDispatchToProps = { applyFilter, removeFilter, clearFilters };
 
 export default connect(

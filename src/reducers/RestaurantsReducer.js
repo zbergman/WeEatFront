@@ -4,7 +4,8 @@ import {
   APPLY_FILTER,
   REMOVE_FILTER,
   CLEAR_FILTERS,
-  SET_CURRENT_RESTAURANT_ID
+  SET_CURRENT_RESTAURANT_ID,
+  SET_MODAL_OPEN_STATE
 } from "../constants/ActionTypes";
 import {
   MINIMAL_RATING,
@@ -14,6 +15,7 @@ import {
 } from "../filters/FiltersNames";
 import { predicates } from "../filters/Predicates";
 import { handleActions } from "redux-actions";
+import { IS_ADD_RESTAURANT_OPEN } from "../constants/Modals";
 
 const initialState = {
   restaurants: {},
@@ -26,6 +28,9 @@ const initialState = {
       [MAX_DELIVERY_TIME_IN_MINUTES]: 120,
       [TEN_BIS]: false
     }
+  },
+  modals: {
+    [IS_ADD_RESTAURANT_OPEN]: false
   }
 };
 
@@ -85,6 +90,14 @@ export default handleActions(
     [CLEAR_FILTERS]: state => ({
       ...state,
       filters: { ...initialState.filters }
+    }),
+
+    [SET_MODAL_OPEN_STATE]: (state, action) => ({
+      ...state,
+      modals: {
+        ...state.modals,
+        [action.payload.modalName]: action.payload.value
+      }
     })
   },
   initialState

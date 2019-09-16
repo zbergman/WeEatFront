@@ -21,5 +21,19 @@
       font-family: sans-serif;
       margin-bottom: 50px;
     }
+
+    .headerItemsContainer {
+      display: flex;
+      justify-content: space-between;
+
+      .search {
+        margin-right: 10px;
+      }
+
+      .addRestaurantButton {
+        background-color: $titleColor;
+        color: white;
+      }
+    }
   }
 }

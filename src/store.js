@@ -1,9 +1,10 @@
-import { createStore, applyMiddleware } from "redux";
+import { createStore, applyMiddleware, combineReducers } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import reducer from "./reducers/RestaurantsReducer";
+import restaurantReducer from "./reducers/RestaurantsReducer";
+import { reducer as form } from "redux-form";
 
 export default createStore(
-  reducer,
+  combineReducers({ restaurantReducer, form }),
   composeWithDevTools(applyMiddleware(thunk))
 );
