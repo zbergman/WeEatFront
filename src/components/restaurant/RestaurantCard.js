@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { CuisineIcon } from "./CuisineIcon";
+import { CuisineImage } from "./CuisineImage";
 import styles from "./RestaurantCard.module.scss";
 import { TenBis } from "../TenBis";
-import { Rating } from "semantic-ui-react";
+import { Rating, Card, Button } from "semantic-ui-react";
 
 export const RestaurantCard = ({
   cuisine,
@@ -14,20 +14,29 @@ export const RestaurantCard = ({
   rating
 }) => {
   return (
-    <div className={styles.restaurantCard}>
-      <div>
-        <CuisineIcon cuisine={cuisine} />
-      </div>
-      <div className={styles.restaurantsDetails}>
-        <div className={styles.restaurantTitle}>{name}</div>
-        <div>{address}</div>
-        <div className={styles.restaurantMeasures}>
-          <div>~{maxDeliveryTimeInMinutes} Minutes</div>
-          {is10Bis && <TenBis className={styles.tenBisImage} />}
+    <Card>
+      <CuisineImage cuisine={cuisine} />
+      <Card.Content>
+        <Card.Header className={styles.cardHeader}>
+          <div>{name}</div>
           <Rating defaultRating={Math.round(rating)} maxRating={5} disabled />
-        </div>
-      </div>
-    </div>
+        </Card.Header>
+        <Card.Meta>{address}</Card.Meta>
+        <Card.Description className={styles.cardDescription}>
+          <div className={styles.descriptionArea}>
+            <div>~{maxDeliveryTimeInMinutes} Minutes</div>
+            {is10Bis && <TenBis className={styles.tenBisImage} />}
+          </div>
+          <div className={styles.descriptionArea}>
+            <Button
+              icon="comment outline"
+              className={styles.reviewButton}
+            />
+            <Button icon="angle down" className={styles.reviewButton}/>
+          </div>
+        </Card.Description>
+      </Card.Content>
+    </Card>
   );
 };
 

@@ -1,3 +1,12 @@
+import pasta from "../assets/images/Pasta.jpg";
+import acaiBowl from "../assets/images/AcaiBowl.jpg";
+import cupcake from "../assets/images/Cupcake.jpg";
+import defaultPic from "../assets/images/Default.jpg";
+import ramen from "../assets/images/Ramen.jpg";
+import salad from "../assets/images/Salad.jpeg";
+import sandwich from "../assets/images/Sandwich.jpg";
+import hamburger from "../assets/images/Hamburger.jpg";
+
 export const ITALIAN_CUISINE = "italian";
 export const ASIAN_CUISINE = "asian";
 export const VEGAN_CUISINE = "vegan";
@@ -49,4 +58,15 @@ export const CUISINE_ICONS = {
   [BREAKFAST_CUISINE]: "fas fa-egg",
   [SANDWICHES_CUISINE]: "fas fa-bread-slice",
   default: "fas fa-utensils"
+};
+
+export const CUISINE_IMAGES = {
+  [ITALIAN_CUISINE]: pasta,
+  [ASIAN_CUISINE]: ramen,
+  [VEGAN_CUISINE]: salad,
+  [AMERICAN_CUISINE]: hamburger,
+  [SWEET_CUISINE]: cupcake,
+  [BREAKFAST_CUISINE]: acaiBowl,
+  [SANDWICHES_CUISINE]: sandwich,
+  default: defaultPic
 };
