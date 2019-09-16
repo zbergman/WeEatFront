@@ -1,19 +1,13 @@
 import React from "react";
-import { Button, Modal } from "semantic-ui-react";
+import { Modal } from "semantic-ui-react";
 import AddRestaurant from "../../forms/AddRestaurant";
-import styles from "./AddRestaurantModal.module.scss";
+import { IS_ADD_RESTAURANT_OPEN } from "../../constants/Modals";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-export const AddRestaurantModal = () => {
+const AddRestaurantModal = (props) => {
   return (
-    <Modal
-      trigger={
-        <Button
-          circular={true}
-          icon="plus"
-          className={styles.addRestaurantButton}
-        />
-      }
-    >
+    <Modal open={props.isOpen} size="tiny" dimmer="inverted">
       <Modal.Header>Create new restaurant</Modal.Header>
       <Modal.Content>
         <AddRestaurant />
@@ -21,3 +15,12 @@ export const AddRestaurantModal = () => {
     </Modal>
   );
 };
+AddRestaurantModal.propTypes = {
+  isOpen: PropTypes.bool
+};
+
+const mapStateToProps = state => ({
+  isOpen: state.restaurantReducer.modals[IS_ADD_RESTAURANT_OPEN]
+});
+
+export default connect(mapStateToProps)(AddRestaurantModal);

@@ -29,6 +29,11 @@
       .search {
         margin-right: 10px;
       }
+
+      .addRestaurantButton {
+        background-color: $titleColor !important;
+        color: white !important;
+      }
     }
   }
 }
