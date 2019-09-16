@@ -20,7 +20,7 @@ const Header = (props) => {
         <div className={styles.headerItemsContainer}>
           <SearchRestaurant className={styles.search} />
           <Button
-            circular={true}
+            circular
             icon="plus"
             className={styles.addRestaurantButton}
             onClick={handleAddRestaurant}

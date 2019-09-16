@@ -9,34 +9,21 @@ import { RenderedInputField } from "./RenderedInputField";
 import { RenderedSelectionField } from "./RenderedSelectionField";
 import { RenderedCheckboxField } from "./RenderedCheckboxField";
 import { Button } from "semantic-ui-react";
+import { addRestaurantValidator } from "./Validators";
 import styles from "./AddRestaurant.module.scss";
 
-const validate = val => {
-  const errors = {};
-
-  if (!val.name) {
-    errors.name = "Required";
-  }
-
-  if (!val.cuisine || val.cuisine.length === 0) {
-    errors.cuisine = "Required";
-  }
-
-  if (!val.maxDeliveryTimeInMinutes) {
-    errors.maxDeliveryTimeInMinutes = "Required";
-  } else if (val.maxDeliveryTimeInMinutes > 120) {
-    errors.maxDeliveryTimeInMinutes = "Must be lower than 120";
-  }
-
-  if (!val.address) {
-    errors.address = "Required";
-  }
-
-  return errors;
-};
-
-let AddRestaurant = props => {
+const AddRestaurant = props => {
   const { pristine, invalid, saveRestaurant, handleSubmit, setModalOpenState } = props;
+
+  const handleCreateRestaurant = data => {
+    try {
+      saveRestaurant(data);
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setModalOpenState(IS_ADD_RESTAURANT_OPEN, false);
+    }
+  };
 
   const handleCancel = () => {
     setModalOpenState(IS_ADD_RESTAURANT_OPEN, false);
@@ -44,7 +31,7 @@ let AddRestaurant = props => {
 
   return (
     <form
-      onSubmit={handleSubmit(saveRestaurant)}
+      onSubmit={handleSubmit(handleCreateRestaurant)}
       className={styles.addRestaurantContainer}
     >
       <Field
@@ -107,7 +94,7 @@ const mapDispatchToProps = { saveRestaurant, setModalOpenState };
 
 export default reduxForm({
   form: "AddRestaurant",
-  validate
+  validate: addRestaurantValidator
 })(
   connect(
     mapStateToProps,
