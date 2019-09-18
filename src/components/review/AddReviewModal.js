@@ -4,12 +4,15 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { isAddReviewModalOpen } from "../../selectors/ModalsSelectors";
 import { getCurrentRestaurant } from "../../selectors/RestaurantSelectors";
+import AddReview from "../../forms/AddReview";
 
 const AddReviewModal = props => {
   return (
     <Modal open={props.isOpen} size="tiny" dimmer="inverted">
       <Modal.Header>Add review to {props.restaurant.name}</Modal.Header>
-      <Modal.Content></Modal.Content>
+      <Modal.Content>
+        <AddReview />
+      </Modal.Content>
     </Modal>
   );
 };
@@ -19,6 +22,9 @@ AddReviewModal.propTypes = {
   restaurant: PropTypes.object
 };
 
-const mapStateToProps = state => ({ isOpen: isAddReviewModalOpen(state), restaurant: getCurrentRestaurant(state) });
+const mapStateToProps = state => ({
+  isOpen: isAddReviewModalOpen(state),
+  restaurant: getCurrentRestaurant(state)
+});
 
 export default connect(mapStateToProps)(AddReviewModal);
