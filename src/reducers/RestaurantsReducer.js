@@ -15,7 +15,10 @@ import {
 } from "../filters/FiltersNames";
 import { predicates } from "../filters/Predicates";
 import { handleActions } from "redux-actions";
-import { IS_ADD_RESTAURANT_OPEN } from "../constants/Modals";
+import {
+  IS_ADD_RESTAURANT_OPEN,
+  IS_ADD_REVIEW_OPEN
+} from "../constants/Modals";
 
 const initialState = {
   restaurants: {},
@@ -30,7 +33,8 @@ const initialState = {
     }
   },
   modals: {
-    [IS_ADD_RESTAURANT_OPEN]: false
+    [IS_ADD_RESTAURANT_OPEN]: false,
+    [IS_ADD_REVIEW_OPEN]: false
   }
 };
 

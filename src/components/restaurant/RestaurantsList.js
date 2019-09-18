@@ -1,7 +1,6 @@
 import React, { PureComponent } from "react";
-import { RestaurantCard } from "./RestaurantCard";
+import RestaurantCard from "./RestaurantCard";
 import PropTypes from "prop-types";
-import ReviewsList from "../review/ReviewsList";
 import { connect } from "react-redux";
 import { getRestaurants, setCurrentRestaurantId } from "../../actions/index";
 import { getFilteredRestaurants } from "../../selectors/RestaurantSelectors";

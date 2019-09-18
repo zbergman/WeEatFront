@@ -1,38 +1,40 @@
 import React from "react";
 import SearchRestaurant from "../filters/SearchRestaurant";
-import { Button } from "semantic-ui-react";
+import { Button, Header, Icon } from "semantic-ui-react";
 import { setModalOpenState } from "../../actions/index";
 import { connect } from "react-redux";
 import { IS_ADD_RESTAURANT_OPEN } from "../../constants/Modals";
-import AddRestaurantModal from "../../components/restaurant/AddRestaurantModal";
 import PropTypes from "prop-types";
 import styles from "./Header.module.scss";
 
-const Header = (props) => {
+const HeaderLine = props => {
   const handleAddRestaurant = () => {
     props.setModalOpenState(IS_ADD_RESTAURANT_OPEN, true);
   };
 
   return (
     <header className={styles.headerContainer}>
-      <div className={styles.headerImage}>
-        <div className={styles.headerText}>WeEat</div>
-        <div className={styles.headerItemsContainer}>
-          <SearchRestaurant className={styles.search} />
-          <Button
-            circular
-            icon="plus"
-            className={styles.addRestaurantButton}
-            onClick={handleAddRestaurant}
-          />
-          <AddRestaurantModal />
+      <div className={styles.logoContainer}>
+        <div className={styles.logo}>
+          <Header className={styles.logoTitle}>WeEat</Header>
+          <Icon name="utensils" className={styles.logoIcon} />
         </div>
+      </div>
+      <div className={styles.searchAndAddContainer}>
+        <SearchRestaurant className={styles.search} />
+        <Button
+          size="big"
+          circular
+          icon="plus"
+          className={styles.addRestaurantButton}
+          onClick={handleAddRestaurant}
+        />
       </div>
     </header>
   );
 };
 
-Header.propTypes = {
+HeaderLine.propTypes = {
   setModalOpenState: PropTypes.func
 };
 
@@ -42,4 +44,4 @@ const mapDispatchToProps = { setModalOpenState };
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Header);
+)(HeaderLine);

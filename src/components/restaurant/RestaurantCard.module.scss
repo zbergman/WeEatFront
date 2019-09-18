@@ -1,29 +1,36 @@
-.cardHeader {
-  display: flex !important;
-  justify-content: space-between;
-  align-items: center;
-}
+.cardContainer {
+  height: fit-content;
 
-.cardContent {
-  display: flex;
-  align-items: center;
-}
+  .cardHeader {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-.cardDescription {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  .descriptionArea {
+  .cardDescription {
     display: flex;
+    justify-content: space-between;
     align-items: center;
 
-    .tenBisImage {
-      margin: 0 10px;
-    }
+    .descriptionArea {
+      display: flex;
+      align-items: center;
 
-    .reviewButton {
-      background: none;
+      .tenBisImage {
+        margin: 0 10px;
+      }
+
+      .reviewButton {
+        background: none;
+      }
     }
+  }
+
+  .showReviews {
+    display: block;
+  }
+
+  .hideReviews {
+    display: none;
   }
 }
