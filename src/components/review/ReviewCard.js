@@ -5,7 +5,6 @@ import spacetime  from "spacetime";
 import styles from "./ReviewCard.module.scss";
 
 export const ReviewCard = props => {
-  // const reviewDate = dateFormatter(props.createdAt);
   const reviewDate = spacetime(props.createdAt).format("nice-year");
 
   return (

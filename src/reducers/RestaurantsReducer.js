@@ -5,7 +5,9 @@ import {
   REMOVE_FILTER,
   CLEAR_FILTERS,
   SET_CURRENT_RESTAURANT_ID,
-  SET_MODAL_OPEN_STATE
+  SET_MODAL_OPEN_STATE,
+  ADD_REVIEW,
+  LOAD_RESTAURANT_BY_ID
 } from "../constants/ActionTypes";
 import {
   MINIMAL_RATING,
@@ -101,6 +103,25 @@ export default handleActions(
       modals: {
         ...state.modals,
         [action.payload.modalName]: action.payload.value
+      }
+    }),
+
+    [ADD_REVIEW]: (state, action) => ({
+      ...state,
+      restaurants: {
+        ...state.restaurants,
+        [action.payload.restaurantId]: {
+          ...state.restaurants[action.payload.restaurantId],
+          reviews: [...state.restaurants[action.payload.restaurantId].reviews, action.payload]
+        }
+      }
+    }),
+
+    [LOAD_RESTAURANT_BY_ID]: (state, action) => ({
+      ...state,
+      restaurants: {
+        ...state.restaurants,
+        [action.payload.id]: action.payload
       }
     })
   },

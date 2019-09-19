@@ -16,7 +16,7 @@ export const RenderedSelectionField = ({
       onChange={(param, data) => onChange(data.value)}
     />
     {error && touched && (
-      <Label basic pointing="left" color="red">
+      <Label basic pointing="left" color="red" className={styles.error}>
         {error}
       </Label>
     )}

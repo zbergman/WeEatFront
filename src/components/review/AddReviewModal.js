@@ -9,7 +9,7 @@ import AddReview from "../../forms/AddReview";
 const AddReviewModal = props => {
   return (
     <Modal open={props.isOpen} size="tiny" dimmer="inverted">
-      <Modal.Header>Add review to {props.restaurant.name}</Modal.Header>
+      <Modal.Header>Add review on {props.restaurant.name}</Modal.Header>
       <Modal.Content>
         <AddReview />
       </Modal.Content>

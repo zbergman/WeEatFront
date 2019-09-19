@@ -1,3 +1,19 @@
 .addReviewContainer {
+  display: flex;
+  flex-direction: column;
 
+  .text {
+    width: 300px;
+    border-radius: .28571429rem;
+    border-color: #dededf;
+  }
+
+  .buttonsContainer {
+    display: flex;
+    justify-content: space-between;
+
+    .button {
+      width: 220px;
+    }
+  }
 }

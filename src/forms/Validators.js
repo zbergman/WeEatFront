@@ -33,5 +33,9 @@ export const addReviewValidator = val => {
     errors.text = "Required";
   }
 
+  if (!val.rating) {
+    errors.rating = "Required";
+  }
+
   return errors;
 };

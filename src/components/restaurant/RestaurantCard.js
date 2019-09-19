@@ -40,7 +40,7 @@ class RestaurantCard extends Component {
         <Card.Content>
           <Card.Header className={styles.cardHeader}>
             <div>{name}</div>
-            <Rating defaultRating={Math.round(rating)} maxRating={5} disabled />
+            <Rating rating={Math.round(rating)} maxRating={5} disabled />
           </Card.Header>
           <Card.Meta>{address}</Card.Meta>
           <Card.Description className={styles.cardDescription}>
