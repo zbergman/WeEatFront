@@ -1,7 +1,10 @@
 import React from "react";
 import { IS_ADD_REVIEW_OPEN } from "../constants/Modals";
 import PropTypes from "prop-types";
-import { setModalOpenState, saveReview, getRestaurantById } from "../actions/index";
+import {
+  setModalOpenState,
+  saveReview
+} from "../actions/index";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import { RenderedInputField } from "./RenderedInputField";
@@ -19,8 +22,7 @@ const AddReview = props => {
     handleSubmit,
     setModalOpenState,
     currentRestaurant,
-    saveReview,
-    getRestaurantById
+    saveReview
   } = props;
 
   const handleAddReview = data => {
@@ -77,7 +79,6 @@ const AddReview = props => {
 AddReview.propTypes = {
   setModalOpenState: PropTypes.func,
   saveReview: PropTypes.func,
-  getRestaurantById: PropTypes.func,
   handleSubmit: PropTypes.func,
   pristine: PropTypes.bool,
   invalid: PropTypes.bool,
@@ -87,7 +88,7 @@ AddReview.propTypes = {
 const mapStateToProps = state => ({
   currentRestaurant: getCurrentRestaurant(state)
 });
-const mapDispatchToProps = { setModalOpenState, saveReview, getRestaurantById };
+const mapDispatchToProps = { setModalOpenState, saveReview };
 
 export default reduxForm({
   form: "AddReview",

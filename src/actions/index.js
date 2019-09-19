@@ -6,16 +6,19 @@ import {
   CLEAR_FILTERS,
   SET_CURRENT_RESTAURANT_ID,
   SET_MODAL_OPEN_STATE,
-  ADD_REVIEW,
   LOAD_RESTAURANT_BY_ID
 } from "../constants/ActionTypes";
-import { fetchRestaurants, createRestaurant, createReview, fetchRestaurantById } from "../lib/RestaurantServices";
+import {
+  fetchRestaurants,
+  createRestaurant,
+  createReview,
+  fetchRestaurantById
+} from "../lib/RestaurantServices";
 import { createAction } from "redux-actions";
 
 export const loadRestaurants = createAction(LOAD_RESTAURANTS);
 export const setCurrentRestaurantId = createAction(SET_CURRENT_RESTAURANT_ID);
 export const addRestaurant = createAction(ADD_RESTAURANT);
-export const addReview = createAction(ADD_REVIEW);
 export const clearFilters = createAction(CLEAR_FILTERS);
 export const removeFilter = createAction(REMOVE_FILTER);
 export const loadRestaurantById = createAction(LOAD_RESTAURANT_BY_ID);
@@ -43,7 +46,7 @@ export const saveReview = review => async dispatch => {
   return dispatch(getRestaurantById(review.restaurantId));
 };
 
-export const getRestaurantById = restaurantId => async  dispatch => {
+export const getRestaurantById = restaurantId => async dispatch => {
   const restaurant = await fetchRestaurantById(restaurantId);
   return dispatch(loadRestaurantById(restaurant));
 };
