@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import { getRestaurants, setCurrentRestaurantId } from "../../actions/index";
 import { getFilteredRestaurants } from "../../selectors/RestaurantSelectors";
 import { Card } from "semantic-ui-react";
-import styles from "./RestaurantsList.module.scss";
 
 class RestaurantsList extends PureComponent {
   state = { activeRestaurantId: null };
@@ -33,7 +32,7 @@ class RestaurantsList extends PureComponent {
     const { filteredRestaurants } = this.props;
 
     return (
-      <Card.Group stackable centered className={styles.restaurantsListContainer}>
+      <Card.Group stackable centered>
         {filteredRestaurants.map(restaurant => (
           <RestaurantCard key={restaurant.id} {...restaurant} />
         ))}
