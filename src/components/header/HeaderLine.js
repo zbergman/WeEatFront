@@ -13,7 +13,7 @@ const HeaderLine = props => {
   };
 
   return (
-    <header className={styles.headerContainer}>
+    <Header className={styles.headerContainer}>
       <div className={styles.logoContainer}>
         <div className={styles.logo}>
           <Header className={styles.logoTitle}>WeEat</Header>
@@ -30,7 +30,7 @@ const HeaderLine = props => {
           onClick={handleAddRestaurant}
         />
       </div>
-    </header>
+    </Header>
   );
 };
 
