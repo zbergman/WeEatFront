@@ -1,31 +1,59 @@
 @import "../../assets/stylesheets/colors";
 
 .filtersContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+
+  .tenBisFilterContainer {
+    align-items: center;
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-evenly;
 
-    :global {
-        .item {
-            padding: 20px 0;
-            font-size: 18px;
-
-            .header {
-                padding-bottom: 8px;
-            }
-
-            .description {
-                .rating {
-                    i.icon {
-                        font-size: 18px !important;
-                    }
-
-                    i.active, i.selected, i:hover {
-                        color: $red;
-                    }
-                }
-            }
-        }
+    .tenBis {
+      margin: 0 10px;
+      width: 50px;
     }
+  }
+
+  .clearFilter,
+  .clearFilter:focus {
+    background: none;
+    display: flex;
+    font-size: 18px;
+    border: 1px solid rgba(34, 36, 38, 0.15);
+    border-radius: 0.28571429rem;
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .clearFilter:hover {
+    background: none;
+    border-color: rgba(34, 36, 38, 0.35);
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  :global {
+    .item {
+      padding: 20px 0;
+      font-size: 18px;
+
+      .header {
+        padding-bottom: 8px;
+      }
+
+      .description {
+        .rating {
+          i.icon {
+            font-size: 18px !important;
+          }
+
+          i.active,
+          i.selected,
+          i:hover {
+            color: $red;
+          }
+        }
+      }
+    }
+  }
 }

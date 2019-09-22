@@ -14,14 +14,16 @@ import { Container, Divider } from "semantic-ui-react";
 
 const Home = props => {
   return (
-    <Container>
+    <>
       <HeaderLine />
-      <FiltersComponent />
-      <Divider />
-      <RestaurantsList />
-      {props.isAddRestaurantModalOpen && <AddRestaurantModal />}
-      {props.isAddReviewModalOpen && <AddReviewModal />}
-    </Container>
+      <Container>
+        <FiltersComponent />
+        <Divider />
+        <RestaurantsList />
+        {props.isAddRestaurantModalOpen && <AddRestaurantModal />}
+        {props.isAddReviewModalOpen && <AddReviewModal />}
+      </Container>
+    </>
   );
 };
 

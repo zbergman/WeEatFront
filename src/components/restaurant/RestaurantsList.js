@@ -32,11 +32,13 @@ class RestaurantsList extends PureComponent {
     const { filteredRestaurants } = this.props;
 
     return (
-      <Card.Group stackable centered>
-        {filteredRestaurants.map(restaurant => (
-          <RestaurantCard key={restaurant.id} {...restaurant} />
-        ))}
-      </Card.Group>
+
+        <Card.Group stackable itemsPerRow={3}>
+          {filteredRestaurants.map(restaurant => (
+            <RestaurantCard key={restaurant.id} {...restaurant} />
+          ))}
+        </Card.Group>
+
     );
   }
 }
