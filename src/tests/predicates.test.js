@@ -61,52 +61,52 @@ const maxBrener = {
 const restaurants = [aroma, oyama, goomba, benedict, maxBrener];
 
 test("filter restaurants by 10bis", () => {
-  const filteredRestaurants = filterByPredicates(restaurants, [
+  const actual = filterByPredicates(restaurants, [
     predicates[TEN_BIS]()
   ]);
   const expected = [aroma, oyama, maxBrener];
 
-  expect(new Set(filteredRestaurants)).toEqual(new Set(expected));
+  expect(new Set(actual)).toEqual(new Set(expected));
 });
 
 test("filter restaurants by max delivery time", () => {
-  const filteredRestaurants = filterByPredicates(restaurants, [
+  const actual = filterByPredicates(restaurants, [
     predicates[MAX_DELIVERY_TIME_IN_MINUTES](75)
   ]);
   const expected = [maxBrener, goomba, aroma];
 
-  expect(new Set(filteredRestaurants)).toEqual(new Set(expected));
+  expect(new Set(actual)).toEqual(new Set(expected));
 });
 
 test("filter restaurants by cuisine", () => {
-  const filteredRestaurants = filterByPredicates(restaurants, [
+  const actual = filterByPredicates(restaurants, [
     predicates[CUISINE]("asian")
   ]);
   const expected = [oyama];
 
-  expect(new Set(filteredRestaurants)).toEqual(new Set(expected));
+  expect(new Set(actual)).toEqual(new Set(expected));
 });
 
 test("filter restaurants by minimal rating", () => {
-  const filteredRestaurants = filterByPredicates(restaurants, [
+  const actual = filterByPredicates(restaurants, [
     predicates[MINIMAL_RATING](3)
   ]);
   const expected = [oyama, maxBrener, goomba];
 
-  expect(new Set(filteredRestaurants)).toEqual(new Set(expected));
+  expect(new Set(actual)).toEqual(new Set(expected));
 });
 
 test("filter restaurants by name", () => {
-  const filteredRestaurants = filterByPredicates(restaurants, [
+  const actual = filterByPredicates(restaurants, [
     predicates[RESTAURANT_NAME]("ar")
   ]);
   const expected = [aroma];
 
-  expect(new Set(filteredRestaurants)).toEqual(new Set(expected));
+  expect(new Set(actual)).toEqual(new Set(expected));
 });
 
 test("filter restaurant by name, 10bis, rating, maximal delivery time and cuisine", () => {
-  const filteredRestaurant = filterByPredicates(restaurants, [
+  const actual = filterByPredicates(restaurants, [
     predicates[RESTAURANT_NAME]("ar"),
     predicates[TEN_BIS](),
     predicates[MINIMAL_RATING](1),
@@ -115,5 +115,5 @@ test("filter restaurant by name, 10bis, rating, maximal delivery time and cuisin
   ]);
   const expected = [aroma];
 
-  expect(new Set(filteredRestaurant)).toEqual(new Set(expected));
+  expect(new Set(actual)).toEqual(new Set(expected));
 });
