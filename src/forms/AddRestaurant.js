@@ -1,5 +1,5 @@
 import React from "react";
-import { saveRestaurant, setModalOpenState } from "../actions/index";
+import { saveRestaurant, toggleModalOpenState } from "../actions/index";
 import { CUISINE_TYPES } from "../constants/Constants";
 import { IS_ADD_RESTAURANT_OPEN } from "../constants/Modals";
 import PropTypes from "prop-types";
@@ -13,7 +13,7 @@ import { addRestaurantValidator } from "./Validators";
 import styles from "./AddRestaurant.module.scss";
 
 const AddRestaurant = props => {
-  const { pristine, invalid, saveRestaurant, handleSubmit, setModalOpenState } = props;
+  const { pristine, invalid, saveRestaurant, handleSubmit, toggleModalOpenState } = props;
 
   const handleCreateRestaurant = data => {
     try {
@@ -21,12 +21,12 @@ const AddRestaurant = props => {
     } catch (e) {
       console.log(e);
     } finally {
-      setModalOpenState(IS_ADD_RESTAURANT_OPEN, false);
+      toggleModalOpenState(IS_ADD_RESTAURANT_OPEN);
     }
   };
 
   const handleCancel = () => {
-    setModalOpenState(IS_ADD_RESTAURANT_OPEN, false);
+    toggleModalOpenState(IS_ADD_RESTAURANT_OPEN);
   };
 
   return (
@@ -83,14 +83,14 @@ const AddRestaurant = props => {
 
 AddRestaurant.propTypes = {
   saveRestaurant: PropTypes.func,
-  setModalOpenState: PropTypes.func,
+  toggleModalOpenState: PropTypes.func,
   handleSubmit: PropTypes.func,
   pristine: PropTypes.bool,
   invalid: PropTypes.bool
 };
 
 const mapStateToProps = state => state;
-const mapDispatchToProps = { saveRestaurant, setModalOpenState };
+const mapDispatchToProps = { saveRestaurant, toggleModalOpenState };
 
 export default reduxForm({
   form: "AddRestaurant",

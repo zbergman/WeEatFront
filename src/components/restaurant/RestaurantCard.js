@@ -6,7 +6,7 @@ import { Rating, Card, Button } from "semantic-ui-react";
 import { ReviewsList } from "../review/ReviewsList";
 import styles from "./RestaurantCard.module.scss";
 import { connect } from "react-redux";
-import { setModalOpenState, setCurrentRestaurantId } from "../../actions/index";
+import { toggleModalOpenState, setCurrentRestaurantId } from "../../actions/index";
 import { IS_ADD_REVIEW_OPEN } from "../../constants/Modals";
 
 class RestaurantCard extends Component {
@@ -20,7 +20,7 @@ class RestaurantCard extends Component {
 
   handleAddReview = () => {
     this.props.setCurrentRestaurantId(this.props.id);
-    this.props.setModalOpenState(IS_ADD_REVIEW_OPEN, true);
+    this.props.toggleModalOpenState(IS_ADD_REVIEW_OPEN);
   };
 
   render() {
@@ -83,12 +83,12 @@ RestaurantCard.propTypes = {
   maxDeliveryTimeInMinutes: PropTypes.number.isRequired,
   rating: PropTypes.number.isRequired,
   reviews: PropTypes.array,
-  setModalOpenState: PropTypes.func,
+  toggleModalOpenState: PropTypes.func,
   setCurrentRestaurantId: PropTypes.func
 };
 
 const mapStateToProps = state => state;
-const mapDispatchToProps = { setModalOpenState, setCurrentRestaurantId };
+const mapDispatchToProps = { toggleModalOpenState, setCurrentRestaurantId };
 
 export default connect(
   mapStateToProps,
