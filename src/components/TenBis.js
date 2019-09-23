@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../assets/images/10bis.png";
+import logo from "../assets/images/TenBisIcon.jpeg";
 import styles from "./TenBis.module.scss";
 import cn from "classnames";
 import PropTypes from "prop-types";

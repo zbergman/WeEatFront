@@ -40,9 +40,16 @@
       width: 400px;
     }
 
-    .addRestaurantButton {
-      background-color: $titleColor;
-      color: white;
+    .addRestaurantButton,
+    .addRestaurantButton:focus {
+      background: white;
+      border: 1px solid rgba(34, 36, 38, 0.15);
+      color: rgba(0, 0, 0, 0.6);
+    }
+
+    .addRestaurantButton:hover {
+      border-color: rgba(34, 36, 38, 0.35);
+      color: rgba(0, 0, 0, 0.8);
     }
   }
 }
