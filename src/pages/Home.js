@@ -6,8 +6,7 @@ import AddReviewModal from "../components/review/AddReviewModal";
 import AddRestaurantModal from "../components/restaurant/AddRestaurantModal";
 import PropTypes from "prop-types";
 import {
-  isAddReviewModalOpen,
-  isAddRestaurantModalOpen
+  isAddReviewModalOpen
 } from "../selectors/ModalsSelectors";
 import { connect } from "react-redux";
 import { Container, Divider } from "semantic-ui-react";
@@ -19,19 +18,17 @@ const Home = props => {
       <FiltersComponent />
       <Divider/>
       <RestaurantsList />
-      {props.isAddRestaurantModalOpen && <AddRestaurantModal />}
+      <AddRestaurantModal />
       {props.isAddReviewModalOpen && <AddReviewModal />}
     </Container>
   );
 };
 
 Home.propTypes = {
-  isAddReviewModalOpen: PropTypes.bool,
-  isAddRestaurantModalOpen: PropTypes.bool
+  isAddReviewModalOpen: PropTypes.bool
 };
 
 const mapStateToProps = state => ({
-  isAddRestaurantModalOpen: isAddRestaurantModalOpen(state),
   isAddReviewModalOpen: isAddReviewModalOpen(state)
 });
 
