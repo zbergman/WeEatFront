@@ -21,3 +21,8 @@ export const keysToCamel = o => {
 
   return o;
 };
+
+export const filterByPredicates = (items, predicates) =>
+  items.filter(item =>
+    predicates.every(predicate => predicate(item))
+  );

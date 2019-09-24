@@ -25,7 +25,8 @@ const SearchRestaurant = ({className, applyFilter, removeFilter}) => {
 
 SearchRestaurant.propTypes = {
   applyFilter: PropTypes.func,
-  removeFilter: PropTypes.func
+  removeFilter: PropTypes.func,
+  className: PropTypes.string
 };
 
 const mapStateToProps = state => state;
