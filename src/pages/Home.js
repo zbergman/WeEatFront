@@ -4,14 +4,9 @@ import Header from "../components/header/HeaderLine";
 import FiltersComponent from "../components/filters/FiltersComponent";
 import AddReviewModal from "../components/review/AddReviewModal";
 import AddRestaurantModal from "../components/restaurant/AddRestaurantModal";
-import PropTypes from "prop-types";
-import {
-  isAddReviewModalOpen
-} from "../selectors/ModalsSelectors";
-import { connect } from "react-redux";
 import { Container, Divider } from "semantic-ui-react";
 
-const Home = props => {
+export const Home = () => {
   return (
     <Container>
       <Header />
@@ -19,17 +14,8 @@ const Home = props => {
       <Divider/>
       <RestaurantsList />
       <AddRestaurantModal />
-      {props.isAddReviewModalOpen && <AddReviewModal />}
+      <AddReviewModal />
     </Container>
   );
 };
 
-Home.propTypes = {
-  isAddReviewModalOpen: PropTypes.bool
-};
-
-const mapStateToProps = state => ({
-  isAddReviewModalOpen: isAddReviewModalOpen(state)
-});
-
-export default connect(mapStateToProps)(Home);

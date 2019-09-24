@@ -5,7 +5,7 @@ import "./assets/stylesheets/colors.scss";
 import { Provider } from "react-redux";
 import store from "./store";
 import "semantic-ui-css/semantic.min.css";
-import Home from "./pages/Home";
+import { Home } from "./pages/Home";
 import dotenv from "dotenv";
 
 dotenv.config({ silent: true });

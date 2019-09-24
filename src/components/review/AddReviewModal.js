@@ -7,8 +7,12 @@ import { getCurrentRestaurant } from "../../selectors/RestaurantSelectors";
 
 const AddReviewModal = props => (
   <Modal open={props.isOpen} size="tiny" dimmer="inverted">
-    <Modal.Header>Add review to {props.restaurant.name}</Modal.Header>
-    <Modal.Content></Modal.Content>
+    {props.isOpen && (
+      <>
+        <Modal.Header>Add review to {props.restaurant.name}</Modal.Header>
+        <Modal.Content></Modal.Content>
+      </>
+    )}
   </Modal>
 );
 
