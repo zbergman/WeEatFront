@@ -14,6 +14,7 @@ import styles from "./FiltersComponent.module.scss";
 import Icon from "semantic-ui-react/dist/commonjs/elements/Icon";
 import { getRestaurantsFilters } from "../../selectors/FiltersSelectors";
 import PropTypes from "prop-types";
+import { TenBis } from "../TenBis";
 
 const SLIDER_STYLE = { trackFill: { backgroundColor: "#f61f06" } };
 
@@ -96,21 +97,21 @@ class FiltersComponent extends Component {
         </Item>
         <Item>
           <Item.Content>
-            <Item.Description>
+            <Item.Description className={styles.tenBisFilterContainer}>
               <Checkbox
                 checked={this.props.filtersValues[TEN_BIS]}
-                label="Accepts 10Bis"
                 onChange={this.handleTenBisChange}
               />
+              <TenBis className={styles.tenBis}/>
             </Item.Description>
           </Item.Content>
         </Item>
         <Item>
           <Item.Content>
             <Item.Description>
-              <Button onClick={this.handleClearFilters}>
-                <Icon name="times circle outline" />
-                Clear All Filters
+              <Button onClick={this.handleClearFilters} className={styles.clearFilter}>
+                <Icon name="times circle outline"/>
+                <div>Clear All Filters</div>
               </Button>
             </Item.Description>
           </Item.Content>

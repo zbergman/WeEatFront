@@ -8,14 +8,16 @@ import { Container, Divider } from "semantic-ui-react";
 
 export const Home = () => {
   return (
-    <Container>
+    <>
       <HeaderLine />
-      <FiltersComponent />
-      <Divider />
-      <RestaurantsList />
-      <AddRestaurantModal />
-      <AddReviewModal />
-    </Container>
+      <Container>
+        <FiltersComponent />
+        <Divider />
+        <RestaurantsList />
+        <AddRestaurantModal />
+        <AddReviewModal />
+      </Container>
+    </>
   );
 };
 

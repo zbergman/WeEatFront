@@ -4,10 +4,14 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getRestaurants, setCurrentRestaurantId } from "../../actions/index";
 import { getFilteredRestaurants } from "../../selectors/RestaurantSelectors";
-import { Card } from "semantic-ui-react";
+import { Card, Loader } from "semantic-ui-react";
+import styles from "./RestaurantsList.module.scss";
 
 class RestaurantsList extends PureComponent {
-  state = { activeRestaurantId: null };
+  state = {
+    activeRestaurantId: null,
+    loaded: false
+  };
 
   static propTypes = {
     filteredRestaurants: PropTypes.array,
@@ -15,9 +19,10 @@ class RestaurantsList extends PureComponent {
     getRestaurants: PropTypes.func
   };
 
-  componentDidMount() {
-    this.props.getRestaurants();
-  }
+  componentDidMount = async () => {
+    await this.props.getRestaurants();
+    this.setState(({ loaded }) => ({loaded: !loaded}));
+  };
 
   handleClick = (e, titleProps) => {
     const { index } = titleProps;
@@ -30,13 +35,17 @@ class RestaurantsList extends PureComponent {
 
   render() {
     const { filteredRestaurants } = this.props;
+    const loaded = this.state.loaded;
 
     return (
-      <Card.Group stackable centered>
-        {filteredRestaurants.map(restaurant => (
-          <RestaurantCard key={restaurant.id} restaurant={restaurant} />
-        ))}
-      </Card.Group>
+      <>
+        {!loaded && <Loader size="massive" active className={styles.loader}/>}
+        <Card.Group stackable itemsPerRow={3}>
+          {filteredRestaurants.map(restaurant => (
+            <RestaurantCard key={restaurant.id} restaurant={restaurant} />
+          ))}
+        </Card.Group>
+      </>
     );
   }
 }

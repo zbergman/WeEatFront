@@ -6,6 +6,7 @@
   justify-content: space-evenly;
   align-items: center;
   height: 380px;
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
 
   .logoContainer {
     .logo {
@@ -39,9 +40,16 @@
       width: 400px;
     }
 
-    .addRestaurantButton {
-      background-color: $titleColor;
-      color: white;
+    .addRestaurantButton,
+    .addRestaurantButton:focus {
+      background: white;
+      border: 1px solid $buttonBorderColor;
+      color: $buttonTextColor;
+    }
+
+    .addRestaurantButton:hover {
+      border-color: $buttonTextColorOnHover;
+      color: $buttonTextColorOnHover;
     }
   }
 }
