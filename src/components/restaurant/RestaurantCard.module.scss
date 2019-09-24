@@ -1,41 +1,36 @@
-@import "../../assets/stylesheets/colors";
+.cardContainer {
+  height: fit-content;
 
-@mixin flexedDiv($flexDirection) {
+  .cardHeader {
     display: flex;
-    flex-direction: $flexDirection;
+    justify-content: space-between;
     align-items: center;
-}
+  }
 
-.restaurantCard {
-    @include flexedDiv(row);
-    margin: 10px 20px;
-    width: 30%;
-    min-width: 250px;
+  .cardDescription {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-    .restaurantsDetails {
-        @include flexedDiv(column);
-        align-items: unset;
-        margin: 10px;
-        color: $grey;
-        font-size: 11px;
+    .descriptionArea {
+      display: flex;
+      align-items: center;
 
-        :global {
-            i.active {
-                color: $red !important;
-            }
-        }
+      .tenBisImage {
+        margin: 0 10px;
+      }
 
-        .restaurantTitle {
-            color: $titleColor;
-            font-weight: bold;
-        }
-
-        .restaurantMeasures {
-            @include flexedDiv(row);
-
-            div, .tenBisImage {
-                margin-right: 10px;
-            }
-        }
+      .reviewButton {
+        background: none;
+      }
     }
+  }
+
+  .showReviews {
+    display: block;
+  }
+
+  .hideReviews {
+    display: none;
+  }
 }

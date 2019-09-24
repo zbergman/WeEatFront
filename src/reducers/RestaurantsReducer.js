@@ -5,7 +5,7 @@ import {
   REMOVE_FILTER,
   CLEAR_FILTERS,
   SET_CURRENT_RESTAURANT_ID,
-  SET_MODAL_OPEN_STATE
+  TOGGLE_MODAL_OPEN_STATE
 } from "../constants/ActionTypes";
 import {
   MINIMAL_RATING,
@@ -15,7 +15,10 @@ import {
 } from "../filters/FiltersNames";
 import { predicates } from "../filters/Predicates";
 import { handleActions } from "redux-actions";
-import { IS_ADD_RESTAURANT_OPEN } from "../constants/Modals";
+import {
+  IS_ADD_RESTAURANT_OPEN,
+  IS_ADD_REVIEW_OPEN
+} from "../constants/Modals";
 
 const initialState = {
   restaurants: {},
@@ -30,7 +33,8 @@ const initialState = {
     }
   },
   modals: {
-    [IS_ADD_RESTAURANT_OPEN]: false
+    [IS_ADD_RESTAURANT_OPEN]: false,
+    [IS_ADD_REVIEW_OPEN]: false
   }
 };
 
@@ -92,11 +96,11 @@ export default handleActions(
       filters: { ...initialState.filters }
     }),
 
-    [SET_MODAL_OPEN_STATE]: (state, action) => ({
+    [TOGGLE_MODAL_OPEN_STATE]: (state, action) => ({
       ...state,
       modals: {
         ...state.modals,
-        [action.payload.modalName]: action.payload.value
+        [action.payload]: !state.modals[action.payload]
       }
     })
   },

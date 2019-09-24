@@ -1,9 +1,9 @@
 import React from "react";
 import { Modal } from "semantic-ui-react";
 import AddRestaurant from "../../forms/AddRestaurant";
-import { IS_ADD_RESTAURANT_OPEN } from "../../constants/Modals";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { isAddRestaurantModalOpen } from "../../selectors/ModalsSelectors";
 
 const AddRestaurantModal = (props) => {
   return (
@@ -20,7 +20,7 @@ AddRestaurantModal.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  isOpen: state.restaurantReducer.modals[IS_ADD_RESTAURANT_OPEN]
+  isOpen: isAddRestaurantModalOpen(state)
 });
 
 export default connect(mapStateToProps)(AddRestaurantModal);

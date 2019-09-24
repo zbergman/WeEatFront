@@ -1,18 +1,21 @@
-import React, {Component} from "react";
+import React from "react";
 import RestaurantsList from "../components/restaurant/RestaurantsList";
-import Header from "../components/header/Header";
+import Header from "../components/header/HeaderLine";
 import FiltersComponent from "../components/filters/FiltersComponent";
+import AddReviewModal from "../components/review/AddReviewModal";
+import AddRestaurantModal from "../components/restaurant/AddRestaurantModal";
+import { Container, Divider } from "semantic-ui-react";
 
-class Home extends Component {
-  render() {
-    return (
-      <>
-        <Header />
-        <FiltersComponent />
-        <RestaurantsList />
-      </>
-    );
-  }
-}
+export const Home = () => {
+  return (
+    <Container>
+      <Header />
+      <FiltersComponent />
+      <Divider/>
+      <RestaurantsList />
+      <AddRestaurantModal />
+      <AddReviewModal />
+    </Container>
+  );
+};
 
-export default Home;
