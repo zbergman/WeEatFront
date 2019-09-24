@@ -21,7 +21,7 @@ class RestaurantsList extends PureComponent {
 
   componentDidMount = async () => {
     await this.props.getRestaurants();
-    this.setState({ loaded: true });
+    this.setState(({ loaded }) => ({loaded: !loaded}));
   };
 
   handleClick = (e, titleProps) => {
