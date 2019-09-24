@@ -1,7 +1,7 @@
 import React from "react";
 import SearchRestaurant from "../filters/SearchRestaurant";
 import { Button, Header, Icon } from "semantic-ui-react";
-import { setModalOpenState } from "../../actions/index";
+import { toggleModalOpenState } from "../../actions/index";
 import { connect } from "react-redux";
 import { IS_ADD_RESTAURANT_OPEN } from "../../constants/Modals";
 import PropTypes from "prop-types";
@@ -9,7 +9,7 @@ import styles from "./Header.module.scss";
 
 const HeaderLine = props => {
   const handleAddRestaurant = () => {
-    props.setModalOpenState(IS_ADD_RESTAURANT_OPEN, true);
+    props.toggleModalOpenState(IS_ADD_RESTAURANT_OPEN);
   };
 
   return (
@@ -35,11 +35,11 @@ const HeaderLine = props => {
 };
 
 HeaderLine.propTypes = {
-  setModalOpenState: PropTypes.func
+  toggleModalOpenState: PropTypes.func
 };
 
 const mapStateToProps = state => state;
-const mapDispatchToProps = { setModalOpenState };
+const mapDispatchToProps = { toggleModalOpenState: toggleModalOpenState };
 
 export default connect(
   mapStateToProps,

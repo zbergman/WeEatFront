@@ -1,11 +1,13 @@
+@import "../assets/stylesheets/colors";
+
 .addReviewContainer {
   display: flex;
   flex-direction: column;
 
   .text {
     width: 300px;
-    border-radius: .28571429rem;
-    border-color: #dededf;
+    border-radius: 5px;
+    border-color: $textFieldBorderColor;
   }
 
   .buttonsContainer {

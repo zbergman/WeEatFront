@@ -5,8 +5,8 @@ import {
   REMOVE_FILTER,
   CLEAR_FILTERS,
   SET_CURRENT_RESTAURANT_ID,
-  SET_MODAL_OPEN_STATE,
-  LOAD_RESTAURANT_BY_ID
+  LOAD_RESTAURANT_BY_ID,
+  TOGGLE_MODAL_OPEN_STATE
 } from "../constants/ActionTypes";
 import {
   fetchRestaurants,
@@ -22,13 +22,10 @@ export const addRestaurant = createAction(ADD_RESTAURANT);
 export const clearFilters = createAction(CLEAR_FILTERS);
 export const removeFilter = createAction(REMOVE_FILTER);
 export const loadRestaurantById = createAction(LOAD_RESTAURANT_BY_ID);
+export const toggleModalOpenState = createAction(TOGGLE_MODAL_OPEN_STATE);
 export const applyFilter = createAction(
   APPLY_FILTER,
   (predicateName, value) => ({ predicateName, value })
-);
-export const setModalOpenState = createAction(
-  SET_MODAL_OPEN_STATE,
-  (modalName, value) => ({ modalName, value })
 );
 
 export const getRestaurants = () => async dispatch => {

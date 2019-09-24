@@ -42,7 +42,7 @@ class RestaurantsList extends PureComponent {
         {!loaded && <Loader size="massive" active className={styles.loader}/>}
         <Card.Group stackable itemsPerRow={3}>
           {filteredRestaurants.map(restaurant => (
-            <RestaurantCard key={restaurant.id} {...restaurant} />
+            <RestaurantCard key={restaurant.id} restaurant={restaurant} />
           ))}
         </Card.Group>
       </>
