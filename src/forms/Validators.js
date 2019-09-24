@@ -21,3 +21,21 @@ export const addRestaurantValidator = val => {
 
   return errors;
 };
+
+export const addReviewValidator = val => {
+  const errors = {};
+
+  if (!val.reviewerName) {
+    errors.reviewerName = "Required";
+  }
+
+  if (!val.text) {
+    errors.text = "Required";
+  }
+
+  if (!val.rating) {
+    errors.rating = "Required";
+  }
+
+  return errors;
+};

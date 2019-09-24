@@ -7,7 +7,7 @@ export const RenderedInputField = ({ meta: { error, touched }, ...rest }) => (
   <div className={styles.renderedFieldContainer}>
     <Input {...rest} size="small" />
     {error && touched && (
-      <Label basic pointing="left" color="red">
+      <Label basic pointing="left" color="red" className={styles.error}>
         {error}
       </Label>
     )}

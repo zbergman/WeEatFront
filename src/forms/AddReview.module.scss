@@ -1,0 +1,21 @@
+@import "../assets/stylesheets/colors";
+
+.addReviewContainer {
+  display: flex;
+  flex-direction: column;
+
+  .text {
+    width: 300px;
+    border-radius: 5px;
+    border-color: $textFieldBorderColor;
+  }
+
+  .buttonsContainer {
+    display: flex;
+    justify-content: space-between;
+
+    .button {
+      width: 220px;
+    }
+  }
+}

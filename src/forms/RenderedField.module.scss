@@ -1,4 +1,9 @@
 .renderedFieldContainer {
   display: flex;
   margin: 10px;
+  align-items: center;
+
+  .error {
+    height: fit-content;
+  }
 }

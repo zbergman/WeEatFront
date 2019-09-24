@@ -23,7 +23,7 @@ class RestaurantCard extends Component {
   };
 
   handleAddReview = () => {
-    this.props.setCurrentRestaurantId(this.props.id);
+    this.props.setCurrentRestaurantId(this.props.restaurant.id);
     this.props.toggleModalOpenState(IS_ADD_REVIEW_OPEN);
   };
 
@@ -44,7 +44,7 @@ class RestaurantCard extends Component {
         <Card.Content>
           <Card.Header className={styles.cardHeader}>
             <div>{name}</div>
-            <Rating defaultRating={rating} maxRating={5} disabled />
+            <Rating rating={rating} maxRating={5} disabled />
           </Card.Header>
           <Card.Meta>{address}</Card.Meta>
           <Card.Description className={styles.cardDescription}>

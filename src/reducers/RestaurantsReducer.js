@@ -5,6 +5,7 @@ import {
   REMOVE_FILTER,
   CLEAR_FILTERS,
   SET_CURRENT_RESTAURANT_ID,
+  LOAD_RESTAURANT_BY_ID,
   TOGGLE_MODAL_OPEN_STATE
 } from "../constants/ActionTypes";
 import {
@@ -101,6 +102,14 @@ export default handleActions(
       modals: {
         ...state.modals,
         [action.payload]: !state.modals[action.payload]
+      }
+    }),
+
+    [LOAD_RESTAURANT_BY_ID]: (state, action) => ({
+      ...state,
+      restaurants: {
+        ...state.restaurants,
+        [action.payload.id]: action.payload
       }
     })
   },
