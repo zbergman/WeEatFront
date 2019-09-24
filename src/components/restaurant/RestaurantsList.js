@@ -34,7 +34,7 @@ class RestaurantsList extends PureComponent {
     return (
       <Card.Group stackable centered>
         {filteredRestaurants.map(restaurant => (
-          <RestaurantCard key={restaurant.id} {...restaurant} />
+          <RestaurantCard key={restaurant.id} restaurant={restaurant} />
         ))}
       </Card.Group>
     );

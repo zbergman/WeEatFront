@@ -1,10 +1,7 @@
 import React from "react";
 import { IS_ADD_REVIEW_OPEN } from "../constants/Modals";
 import PropTypes from "prop-types";
-import {
-  setModalOpenState,
-  saveReview
-} from "../actions/index";
+import { toggleModalOpenState, saveReview } from "../actions/index";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 import { RenderedInputField } from "./RenderedInputField";
@@ -20,7 +17,7 @@ const AddReview = props => {
     pristine,
     invalid,
     handleSubmit,
-    setModalOpenState,
+    toggleModalOpenState,
     currentRestaurant,
     saveReview
   } = props;
@@ -31,12 +28,12 @@ const AddReview = props => {
     } catch (e) {
       console.log(e);
     } finally {
-      setModalOpenState(IS_ADD_REVIEW_OPEN, false);
+      toggleModalOpenState(IS_ADD_REVIEW_OPEN, false);
     }
   };
 
   const handleCancel = () => {
-    setModalOpenState(IS_ADD_REVIEW_OPEN, false);
+    toggleModalOpenState(IS_ADD_REVIEW_OPEN, false);
   };
 
   return (
@@ -77,7 +74,7 @@ const AddReview = props => {
 };
 
 AddReview.propTypes = {
-  setModalOpenState: PropTypes.func,
+  toggleModalOpenState: PropTypes.func,
   saveReview: PropTypes.func,
   handleSubmit: PropTypes.func,
   pristine: PropTypes.bool,
@@ -88,7 +85,7 @@ AddReview.propTypes = {
 const mapStateToProps = state => ({
   currentRestaurant: getCurrentRestaurant(state)
 });
-const mapDispatchToProps = { setModalOpenState, saveReview };
+const mapDispatchToProps = { toggleModalOpenState, saveReview };
 
 export default reduxForm({
   form: "AddReview",

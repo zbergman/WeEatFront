@@ -5,8 +5,8 @@ import {
   REMOVE_FILTER,
   CLEAR_FILTERS,
   SET_CURRENT_RESTAURANT_ID,
-  SET_MODAL_OPEN_STATE,
-  LOAD_RESTAURANT_BY_ID
+  LOAD_RESTAURANT_BY_ID,
+  TOGGLE_MODAL_OPEN_STATE
 } from "../constants/ActionTypes";
 import {
   MINIMAL_RATING,
@@ -97,11 +97,11 @@ export default handleActions(
       filters: { ...initialState.filters }
     }),
 
-    [SET_MODAL_OPEN_STATE]: (state, action) => ({
+    [TOGGLE_MODAL_OPEN_STATE]: (state, action) => ({
       ...state,
       modals: {
         ...state.modals,
-        [action.payload.modalName]: action.payload.value
+        [action.payload]: !state.modals[action.payload]
       }
     }),
 

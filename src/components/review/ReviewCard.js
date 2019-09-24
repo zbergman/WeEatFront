@@ -12,7 +12,7 @@ export const ReviewCard = props => {
       <div>
         <div className={styles.reviewCardTitle}>{props.reviewerName}</div>
         <Rating
-          defaultRating={Math.round(props.rating)}
+          defaultRating={props.rating}
           maxRating={5}
           disabled
         />

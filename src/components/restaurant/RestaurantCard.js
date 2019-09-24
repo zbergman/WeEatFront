@@ -6,8 +6,12 @@ import { Rating, Card, Button } from "semantic-ui-react";
 import { ReviewsList } from "../review/ReviewsList";
 import styles from "./RestaurantCard.module.scss";
 import { connect } from "react-redux";
-import { setModalOpenState, setCurrentRestaurantId } from "../../actions/index";
+import {
+  toggleModalOpenState,
+  setCurrentRestaurantId
+} from "../../actions/index";
 import { IS_ADD_REVIEW_OPEN } from "../../constants/Modals";
+import cn from "classnames";
 
 class RestaurantCard extends Component {
   state = {
@@ -15,12 +19,12 @@ class RestaurantCard extends Component {
   };
 
   handleReviewsDisplay = () => {
-    this.setState({ isShowReviews: !this.state.isShowReviews });
+    this.setState(({ isShowReviews }) => ({ isShowReviews: !isShowReviews }));
   };
 
   handleAddReview = () => {
-    this.props.setCurrentRestaurantId(this.props.id);
-    this.props.setModalOpenState(IS_ADD_REVIEW_OPEN, true);
+    this.props.setCurrentRestaurantId(this.props.restaurant.id);
+    this.props.toggleModalOpenState(IS_ADD_REVIEW_OPEN);
   };
 
   render() {
@@ -32,7 +36,7 @@ class RestaurantCard extends Component {
       is10Bis,
       rating,
       reviews
-    } = this.props;
+    } = this.props.restaurant;
 
     return (
       <Card className={styles.cardContainer}>
@@ -40,7 +44,7 @@ class RestaurantCard extends Component {
         <Card.Content>
           <Card.Header className={styles.cardHeader}>
             <div>{name}</div>
-            <Rating rating={Math.round(rating)} maxRating={5} disabled />
+            <Rating rating={rating} maxRating={5} disabled />
           </Card.Header>
           <Card.Meta>{address}</Card.Meta>
           <Card.Description className={styles.cardDescription}>
@@ -63,9 +67,10 @@ class RestaurantCard extends Component {
           </Card.Description>
         </Card.Content>
         <Card.Content
-          className={
-            this.state.isShowReviews ? styles.showReviews : styles.hideReviews
-          }
+          className={cn({
+            [styles.showReviews]: this.state.isShowReviews,
+            [styles.hideReviews]: !this.state.isShowReviews
+          })}
         >
           <ReviewsList reviews={reviews} />
         </Card.Content>
@@ -75,20 +80,13 @@ class RestaurantCard extends Component {
 }
 
 RestaurantCard.propTypes = {
-  id: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
-  cuisine: PropTypes.string.isRequired,
-  is10Bis: PropTypes.bool,
-  address: PropTypes.string.isRequired,
-  maxDeliveryTimeInMinutes: PropTypes.number.isRequired,
-  rating: PropTypes.number.isRequired,
-  reviews: PropTypes.array,
-  setModalOpenState: PropTypes.func,
+  restaurant: PropTypes.object.isRequired,
+  toggleModalOpenState: PropTypes.func,
   setCurrentRestaurantId: PropTypes.func
 };
 
 const mapStateToProps = state => state;
-const mapDispatchToProps = { setModalOpenState, setCurrentRestaurantId };
+const mapDispatchToProps = { toggleModalOpenState, setCurrentRestaurantId };
 
 export default connect(
   mapStateToProps,
